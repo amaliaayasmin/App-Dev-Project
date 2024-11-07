@@ -1,16 +1,28 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
 
-    <!--Left Side : Logo & Navigation Links -->
+    <!-- Left Side: Two Logos and Navigation Links -->
+    <div class="d-flex align-items-center">
+      <!-- First Logo -->
+      <a href="{{ url('/') }}" class="navbar-brand d-inline-flex align-items-center">
+        <img src="{{url('img/utm logo.png')}}" alt="UTM logo" style="height: 40px;">
+      </a>
+
+      <!-- Second Logo -->
+      <a href="{{ url('/') }}" class="navbar-brand d-inline-flex align-items-center ms-2">
+        <img src="{{ asset('img/IMG_2249.png') }}" alt="Oh My Merits Logo" style="height: 40px;">
+      </a>
+    </div>
      
     <a class="navbar-brand" href="#">Oh My Merits!</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Saved Event</a>
