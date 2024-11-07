@@ -1,3 +1,5 @@
+<!--Layout for Dashboard -->
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -8,6 +10,7 @@
   </head>
   <body>
     @include('include.header')
+    @include('include.sidebar')
     @yield('content')
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" ></script>
