@@ -1,7 +1,10 @@
+web.php
+
 <?php
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManager;
+use App\Http\Controllers\SearchController;
 
 // Main Home Route
 Route::get('/', function () {
@@ -14,6 +17,7 @@ Route::post('/login', [AuthManager::class, 'loginPost'])->name('login.post');
 Route::get('/registration', [AuthManager::class, 'registration'])->name('registration');
 Route::post('/registration', [AuthManager::class, 'registrationPost'])->name('registration.post');
 Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
+Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 // Additional Page Routes
 Route::get('/messages', function () {
