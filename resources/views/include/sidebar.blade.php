@@ -22,5 +22,11 @@
             <img src="{{ asset('img/profile_icon.png') }}" alt="Profile Icon" style="width: 20px; height: 20px;" class="me-2">
             Profile
         </a>
+
+        <a href="{{ route('logout') }}" class="nav-link d-flex align-items-center">
+              <img src="{{ asset('img/logout_icon.png') }}" alt="Logout Icon" style="width: 20px; height: 20px;" class="me-2">
+              Logout
+       </a>
+
     </nav>
 </div>
