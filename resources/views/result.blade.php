@@ -1,4 +1,5 @@
-<!-- resources/views/search/results.blade.php -->
+<!-- resources/views/result.blade.php -->
+
 @extends('layout')
 
 @section('title', 'Search Results')

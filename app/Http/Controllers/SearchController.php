@@ -1,4 +1,3 @@
-
 <?php
 
 namespace App\Http\Controllers;
@@ -14,7 +13,7 @@ class SearchController extends Controller
         // Example:
         // $results = YourModel::where('field', 'like', '%' . $query . '%')->get();
         
-        return view('search.results', compact('query'));
+        return view('result', compact('query'));
     }
 }
 
