@@ -35,3 +35,6 @@ Route::get('/saved-events', function () {
 Route::get('/profile', function () {
     return view('profile'); // create profile.blade.php
 })->name('profile');
+
+
+
