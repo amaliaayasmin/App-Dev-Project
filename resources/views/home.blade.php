@@ -1,5 +1,3 @@
-homeblade.php
-
 @extends('layout')
 
 @section('title', 'Home Page')
