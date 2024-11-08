@@ -16,16 +16,6 @@
   </head>
   <body>
     
-    <!-- Search Bar Section - Place this code here to make it appear at the top -->
-    <div class="container mt-3 search-bar">
-        <div class="d-flex justify-content-center">
-            <form action="{{ route('search') }}" method="GET" class="w-50">
-                <input type="text" name="query" class="form-control" placeholder="Search...">
-                <button type="submit" class="btn btn-primary mt-2 w-100">Search</button>
-            </form>
-        </div>
-    </div>
-
     <!-- Include Header -->
     @include('include.header')
 

@@ -12,6 +12,12 @@
       <a href="{{ url('/') }}" class="navbar-brand d-inline-flex align-items-center ms-2">
         <img src="{{ asset('img/IMG_2249.png') }}" alt="Oh My Merits Logo" style="height: 40px;">
       </a>
+
+      <form action="{{ route('search') }}" method="GET" class="ms-3 d-flex">
+        <input type="text" name="query" class="form-control" placeholder="Search..." style="width: 200px;">
+        <button type="submit" class="btn btn-primary ms-2">Search</button>
+      </form>
+      
     </div>
        
   </div>
