@@ -18,7 +18,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
     Route::get('/dashboard/search', [DashboardController::class, 'search'])->name('dashboard.search');
-
+    Route::get('/post/{post}', [PostController::class, 'show'])->name('post.show');
     
 
 });
