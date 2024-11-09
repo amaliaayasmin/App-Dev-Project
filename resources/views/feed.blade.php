@@ -10,13 +10,10 @@
         </h2>
     </x-slot>
 
+          
+    </div>
     
 
-          <!--  @foreach($programs as $program)
-                <li>{{ $program->title }} - {{ $program->description }}</li>
-            @endforeach
-        </ul> -->
-    </div>
 @endsection
 
-</x-app-layout>
+</x-app-layout> 
