@@ -1,38 +1,30 @@
 <?php
 
+
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthManager;
-use App\Http\Controllers\SearchController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PostController;
 
-// Main Home Route
 Route::get('/', function () {
-    return view('home');
-})->name('home');
+    return view('welcome');
+});
 
-// Authentication Routes
-Route::get('/login', [AuthManager::class, 'login'])->name('login');
-Route::post('/login', [AuthManager::class, 'loginPost'])->name('login.post');
-Route::get('/registration', [AuthManager::class, 'registration'])->name('registration');
-Route::post('/registration', [AuthManager::class, 'registrationPost'])->name('registration.post');
-Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
-Route::get('/search', [SearchController::class, 'search'])->name('search');
+Route::middleware(['auth', 'verified'])->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-// Additional Page Routes
-Route::get('/messages', function () {
-    return view('messages'); // create messages.blade.php
-})->name('messages');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+    Route::get('/dashboard/search', [DashboardController::class, 'search'])->name('dashboard.search');
 
-Route::get('/calendar', function () {
-    return view('calendar'); // create calendar.blade.php
-})->name('calendar');
+    
 
-Route::get('/saved-events', function () {
-    return view('saved-events'); // create saved-events.blade.php
-})->name('saved.events');
+});
 
-Route::get('/profile', function () {
-    return view('profile'); // create profile.blade.php
-})->name('profile');
+Route::resource('post', PostController::class);
 
-
+require __DIR__.'/auth.php';
+require __DIR__.'/admin-auth.php';
 
