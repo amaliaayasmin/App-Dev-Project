@@ -29,7 +29,7 @@ class PostController extends Controller
             'description' => 'nullable|string',
         ]);
 
-        $post = Post::create($request->only([
+        Post::create($request->only([
             'title',
             'location',
             'start_date',
@@ -41,8 +41,7 @@ class PostController extends Controller
         ]));
 
         // Redirect the user to the show page for the newly created post
-        return redirect()->route('post.show', $post->id)->with('success', 'Post created successfully.');
-    }
+        return redirect()->back()->with('success', 'Post created successfully.');    }
 
     public function show(Post $post)
 {
