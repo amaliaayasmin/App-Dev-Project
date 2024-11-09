@@ -1,24 +1,28 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar w/ text</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-      </ul>
-      <span class="navbar-text">
-        Navbar text with an inline element
-      </span>
+    
+    <!-- Left Side: Two Logos -->
+    <div class="d-flex align-items-center">
+      <!-- First Logo -->
+      <a href="{{ url('/') }}" class="navbar-brand d-inline-flex align-items-center">
+        <img src="{{ url('img/utm logo.png') }}" alt="UTM logo" style="height: 40px;">
+      </a>
+
+      <!-- Second Logo -->
+      <a href="{{ url('/') }}" class="navbar-brand d-inline-flex align-items-center ms-2">
+        <img src="{{ asset('img/omm_logo.png') }}" alt="Oh My Merits Logo" style="height: 50px;">
+      </a>
     </div>
+    
+    <!-- Center: Search Bar with a Dedicated Class -->
+    <div class="search-bar-container mx-auto">
+      <form action="{{ route('search') }}" method="GET" class="d-flex">
+        <input type="text" name="query" class="form-control search-input" placeholder="Search...">
+        <button type="submit" class="btn custom-search-btn" style="background-color: #750000 !important; color: white !important; border: none;" >
+          <img src="{{ asset('img/search_icon.png') }}" alt="Search Icon" style="width: 16px; height: 16px;">
+        </button>
+      </form>
+    </div>
+    
   </div>
 </nav>

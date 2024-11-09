@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Http\RedirectResponse;
 
 class AuthManager extends Controller
 {
@@ -50,9 +51,12 @@ class AuthManager extends Controller
         return redirect(route('login'))->with("success", "Registration successful, login to access the app.");
     }
 
-    function logout() {
-        Session::flush();
-        Auth::logout();
-        return redirect(route('login'));
-    }
+   // App\Http\Controllers\AuthManager.php
+
+function logout()
+{
+    Auth::logout();
+    return redirect()->route('login')->with('You have been logged out.');
+}
+
 }

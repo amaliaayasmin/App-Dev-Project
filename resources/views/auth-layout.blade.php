@@ -1,23 +1,24 @@
+<!--Layout for Login/Registration Page -->
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title', 'Homepage')</title>
+    <title>@yield('title', 'Authentication')</title>
+    
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS for login/registration if needed -->
+    @yield('custom-css')
   </head>
   <body>
+    <!-- Content for login or registration forms -->
+    <div class="container">
+        @yield('content')
+    </div>
     
-    <!-- Include Header -->
-    @include('include.header')
-
-    <!-- Include Sidebar -->
-    @include('include.sidebar')
-
-    <!-- Main Content - Content will be injected here -->
-    @yield('content')
-
-    <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
