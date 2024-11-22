@@ -16,6 +16,7 @@ class Post extends Model
         'start_time',
         'end_time',
         'benefits',
-        'description'
+        'description',
+        'image'
    ];
 }

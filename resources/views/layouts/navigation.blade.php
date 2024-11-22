@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" /> 
                     </a>
                 </div>
 
@@ -19,7 +19,7 @@
                  <!-- Post Link -->
                      <x-nav-link :href="route('post.index')" :active="request()->routeIs('post.*')">
                         {{ __('Post') }}
-                     </x-nav-link> 
+                     </x-nav-link>  
 
                      <x-nav-link :href="route('feed')" :active="request()->routeIs('feed')">
                       {{ __('Feed') }}
