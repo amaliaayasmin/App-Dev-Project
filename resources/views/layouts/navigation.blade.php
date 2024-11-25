@@ -21,10 +21,11 @@
                         {{ __('Post') }}
                      </x-nav-link>  
 
-                     <x-nav-link :href="route('feed')" :active="request()->routeIs('feed')">
+                     <x-nav-link :href="route('feed')" :active="request()->routeIs('feed.index')">
                       {{ __('Feed') }}
                       </x-nav-link>
 
+                    
                 </div>
 
             </div>
@@ -88,6 +89,8 @@
             <x-responsive-nav-link :href="route('feed')" :active="request()->routeIs('feed.*')">
                 {{ __('Feed') }}
             </x-responsive-nav-link>
+            
+            
         </div>
 
         <!-- Responsive Settings Options -->
