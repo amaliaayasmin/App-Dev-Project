@@ -43,7 +43,7 @@
         .nav-links {
             position: absolute;
             top: 20px;
-            right: 20px;
+            right: 20px; /* Changed to right instead of left */
             display: flex;
             gap: 1rem;
         }
@@ -61,24 +61,18 @@
     </style>
 </head>
 <body>
-    <!-- Navigation Links -->
+    <!-- Navigation Links for User Types (Positioned Top Right) -->
     <div class="nav-links">
-        @if (Route::has('login'))
-            @auth
-                <a href="{{ url('/dashboard') }}" class="nav-link">Dashboard</a>
-            @else
-                <a href="{{ route('login') }}" class="nav-link">Log in</a>
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="nav-link">Register</a>
-                @endif
-            @endauth
-        @endif
+        <a href="{{ route('organizer.login') }}" class="nav-link">Organizer</a>
+        <a href="{{ route('login') }}" class="nav-link">Student</a>
+        <a href="{{ route('admin.login') }}" class="nav-link">Admin</a>
     </div>
+
 
     <!-- Centered Title and Tagline -->
     <div class="container">
         <div class="title">Oh My Merits</div> <!-- Title of the Web App -->
-        <div class="tagline">Makes Campus Life Comes Alive</div> <!-- Tagline beneath the title -->
+        <div class="tagline">Makes Campus Life Come Alive</div> <!-- Tagline beneath the title -->
     </div>
 </body>
 </html>
