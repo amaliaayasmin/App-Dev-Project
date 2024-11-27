@@ -5,16 +5,23 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('dashboard') }}" style="margin-right: 40px;"> 
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
+                    <!-- Dynamic Dashboard Link -->
+                    @if(auth()->guard('organizer')->check())
+                        <x-nav-link :href="route('organizer.dashboard')" :active="request()->routeIs('organizer.dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                    @elseif(auth()->guard('web')->check()) 
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                    @endif
 
                     <!-- Feed (For Students and Organizers) -->
                     @if(auth()->guard('organizer')->check() || auth()->guard('web')->check())

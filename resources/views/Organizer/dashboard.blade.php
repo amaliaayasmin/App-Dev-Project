@@ -1,13 +1,17 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="d-flex justify-content-center align-items-center w-full">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight me-3">
+        <div class="d-flex align-items-center w-full">
+            <!-- Student Dashboard Title -->
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight me-5">
                 {{ __('Organizer Dashboard') }}
             </h2>
+            
+            <!-- Search Form -->
             <form method="GET" action="{{ route('dashboard.search') }}" class="d-flex">
                 <input type="text" name="query" class="form-control" placeholder="Enter search term..." value="{{ request('query') }}">
-                <button type="submit" class="btn btn-primary ms-2">
-                    <i class="fas fa-search"></i> <!-- Font Awesome Search Icon -->
+                <!-- Button with search icon -->
+                <button type="submit" class="btn ms-2" style="background-color: #750000; color: white;">
+                    <i class="fas fa-search"></i> <!-- FontAwesome search icon -->
                 </button>
             </form>
         </div>
@@ -17,8 +21,6 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <h4>Organizer Dashboard Page</h4>
-
                 </div>
             </div>
         </div>
