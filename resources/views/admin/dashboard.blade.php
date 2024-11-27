@@ -1,28 +1,32 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Admin Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('layouts.admin')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                   <h4>Admin Dashboard Page</h4>
+@section('title', 'Admin Dashboard')
 
+@section('content')
+    <h1>Admin Dashboard</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Organizer</li>
+    </ol>
 
-                   <form method="POST" action="{{ route('admin.logout') }}">
-                    @csrf
-
-                    <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('Log Out') }}
-                    </x-responsive-nav-link>
-                </form>
-                </div>
-            </div>
-        </div>
+    <!-- Organizers Table -->
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($organizers as $organizer)
+                    <tr>
+                        <td>{{ $organizer->id }}</td>
+                        <td>{{ $organizer->name }}</td>
+                        <td>{{ $organizer->email }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
-</x-app-layout>
+@endsection
