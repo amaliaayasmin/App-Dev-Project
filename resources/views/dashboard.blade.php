@@ -19,6 +19,8 @@
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
                     @if(isset($results))
+                    <h4>Student Dashboard Page</h4>
+
                         <h3>Search Results:</h3>
                         <ul>
                             @foreach($results as $result)
