@@ -11,7 +11,7 @@
                 <input type="text" name="query" class="form-control" placeholder="Enter search term..." value="{{ request('query') }}">
                 <!-- Button with search icon -->
                 <button type="submit" class="btn ms-2" style="background-color: #750000; color: white;">
-                    <i class="fas fa-search"></i> <!-- FontAwesome search icon -->
+                    <i class="fas fa-search"></i> 
                 </button>
             </form>
         </div>

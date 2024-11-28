@@ -1,6 +1,10 @@
 <x-guest-layout>
 
-<h3 class="text-centre mb-3">Organizer Registration Page</h3>
+    <div class="flex justify-center mb-4">
+        <img src="{{ asset('img/omm_logo_removebg.png') }}" alt="Logo" class="h-40 w-auto">
+    </div>
+    
+    <h3 class="text-centre mb-3">Organizer Registration Page</h3>
     <form method="POST" action="{{ route('organizer.register') }}">
         @csrf
 
@@ -46,7 +50,8 @@
                 {{ __('Already registered?') }}
             </a>
 
-            <x-primary-button class="ms-4">
+            <x-primary-button class="ms-4"
+            style="background-color: #750000; hover:bg-red-800">  
                 {{ __('Register') }}
             </x-primary-button>
         </div>

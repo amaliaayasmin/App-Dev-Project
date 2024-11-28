@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Oh My Merits</title>
+    <title>Oh! My Merits</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -24,7 +24,7 @@
             align-items: center;
             min-height: 100vh;
             text-align: center;
-            background-color: rgba(0, 0, 0, 0.5); /* Adds a dark overlay for text readability */
+            background-color: rgba(0, 0, 0, 0.5); 
         }
 
         .title {
@@ -43,7 +43,7 @@
         .nav-links {
             position: absolute;
             top: 20px;
-            right: 20px; /* Changed to right instead of left */
+            right: 20px; 
             display: flex;
             gap: 1rem;
         }
@@ -61,7 +61,7 @@
     </style>
 </head>
 <body>
-    <!-- Navigation Links for User Types (Positioned Top Right) -->
+    <!-- Navigation Links for Users -->
     <div class="nav-links">
         <a href="{{ route('organizer.login') }}" class="nav-link">Organizer</a>
         <a href="{{ route('login') }}" class="nav-link">Student</a>
@@ -69,10 +69,10 @@
     </div>
 
 
-    <!-- Centered Title and Tagline -->
+    <!-- Title and Tagline -->
     <div class="container">
-        <div class="title">Oh My Merits</div> <!-- Title of the Web App -->
-        <div class="tagline">Makes Campus Life Come Alive</div> <!-- Tagline beneath the title -->
+        <div class="title">Oh! My Merits</div> 
+        <div class="tagline">Makes Campus Life Comes Alive</div> 
     </div>
 </body>
 </html>

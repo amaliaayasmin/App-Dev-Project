@@ -7,7 +7,7 @@
 
         @include('layouts.navigation')
 
-        <title>{{ config('app.name', 'OH MY MERIT') }}</title>
+        <title>{{ config('APP.name', 'Oh! My Merits') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
