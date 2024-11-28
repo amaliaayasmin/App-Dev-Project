@@ -31,13 +31,10 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('post', PostController::class);
 
-
-
 require __DIR__.'/auth.php';
 require __DIR__.'/admin-auth.php';
 require __DIR__.'/organizer-auth.php';
 
 Route::get('/admin/dashboard', [ShowController::class, 'show'])->name('admin.dashboard');
-
 
 //Route::get('/feed', [FeedController::class, 'index'])->name('feed.index');

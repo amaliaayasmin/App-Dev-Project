@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a style="margin-right: 40px;"> 
+                    <a style="margin-right: 40px;">
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                     </a>
                 </div>
@@ -14,27 +14,27 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <!-- Dynamic Dashboard Link -->
                     @if(auth()->guard('organizer')->check())
-                        <x-nav-link :href="route('organizer.dashboard')" :active="request()->routeIs('organizer.dashboard')">
-                            {{ __('Dashboard') }}
-                        </x-nav-link>
-                    @elseif(auth()->guard('web')->check()) 
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                            {{ __('Dashboard') }}
-                        </x-nav-link>
+                    <x-nav-link :href="route('organizer.dashboard')" :active="request()->routeIs('organizer.dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
+                    @elseif(auth()->guard('web')->check())
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
                     @endif
 
                     <!-- Feed (For Students and Organizers) -->
                     @if(auth()->guard('organizer')->check() || auth()->guard('web')->check())
-                        <x-nav-link :href="route('feed')" :active="request()->routeIs('feed')">
-                            {{ __('Feed') }}
-                        </x-nav-link>
+                    <x-nav-link :href="route('feed')" :active="request()->routeIs('feed')">
+                        {{ __('Feed') }}
+                    </x-nav-link>
                     @endif
 
                     <!-- Post (For Organizers Only) -->
                     @if(auth()->guard('organizer')->check())
-                        <x-nav-link :href="route('post.index')" :active="request()->routeIs('post.*')">
-                            {{ __('Post') }}
-                        </x-nav-link>
+                    <x-nav-link :href="route('post.index')" :active="request()->routeIs('post.*')">
+                        {{ __('Post') }}
+                    </x-nav-link>
                     @endif
                 </div>
             </div>
@@ -46,13 +46,13 @@
                         <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                             <!-- Safely display the user's name if authenticated -->
                             @if(auth()->guard('organizer')->check())
-                                <div>{{ Auth::guard('organizer')->user()->name }}</div>
+                            <div>{{ Auth::guard('organizer')->user()->name }}</div>
                             @elseif(auth()->guard('admin')->check())
-                                <div>{{ Auth::guard('admin')->user()->name }}</div>
+                            <div>{{ Auth::guard('admin')->user()->name }}</div>
                             @elseif(auth()->guard('web')->check())
-                                <div>{{ Auth::user()->name }}</div>
+                            <div>{{ Auth::user()->name }}</div>
                             @else
-                                <div>{{ __('Guest') }}</div>
+                            <div>{{ __('Guest') }}</div>
                             @endif
 
                             <div class="ml-1">
@@ -68,14 +68,14 @@
                         <x-dropdown-link :href="auth()->guard('admin')->check() 
                                             ? route('admin.dashboard') 
                                             : (auth()->guard('organizer')->check() 
-                                                ? route('organizer.dashboard') 
+                                                ? route('profile.edit')
                                                 : route('profile.edit'))">
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
                         <!-- Logout -->
-                        <form method="POST" 
-                              action="{{ auth()->guard('admin')->check() 
+                        <form method="POST"
+                            action="{{ auth()->guard('admin')->check() 
                                             ? route('admin.logout') 
                                             : (auth()->guard('organizer')->check() 
                                                 ? route('organizer.logout') 
@@ -86,7 +86,7 @@
                                                 : (auth()->guard('organizer')->check() 
                                                     ? route('organizer.logout') 
                                                     : route('logout'))"
-                                             onclick="event.preventDefault(); this.closest('form').submit();">
+                                onclick="event.preventDefault(); this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
                         </form>
@@ -115,16 +115,16 @@
 
             <!-- Feed (For Students and Organizers) -->
             @if(auth()->guard('organizer')->check() || auth()->guard('web')->check())
-                <x-responsive-nav-link :href="route('feed')" :active="request()->routeIs('feed')">
-                    {{ __('Feed') }}
-                </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('feed')" :active="request()->routeIs('feed')">
+                {{ __('Feed') }}
+            </x-responsive-nav-link>
             @endif
 
             <!-- Post (For Organizers Only) -->
             @if(auth()->guard('organizer')->check())
-                <x-responsive-nav-link :href="route('post.index')" :active="request()->routeIs('post.*')">
-                    {{ __('Post') }}
-                </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('post.index')" :active="request()->routeIs('post.*')">
+                {{ __('Post') }}
+            </x-responsive-nav-link>
             @endif
         </div>
 
@@ -133,22 +133,22 @@
             <div class="px-4">
                 <!-- Safely display the user's name and email if authenticated -->
                 @if(auth()->check())
-                    <div class="font-medium text-base text-gray-800">
-                        @if(auth()->guard('organizer')->check())
-                            {{ Auth::guard('organizer')->user()->name }}
-                        @elseif(auth()->guard('admin')->check())
-                            {{ Auth::guard('admin')->user()->name }}
-                        @elseif(auth()->guard('web')->check())
-                            {{ Auth::user()->name }}
-                        @else
-                            {{ __('Guest') }}
-                        @endif
-                    </div>
-                    <div class="font-medium text-sm text-gray-500">
-                        {{ auth()->check() ? Auth::user()->email : '' }}
-                    </div>
+                <div class="font-medium text-base text-gray-800">
+                    @if(auth()->guard('organizer')->check())
+                    {{ Auth::guard('organizer')->user()->name }}
+                    @elseif(auth()->guard('admin')->check())
+                    {{ Auth::guard('admin')->user()->name }}
+                    @elseif(auth()->guard('web')->check())
+                    {{ Auth::user()->name }}
+                    @else
+                    {{ __('Guest') }}
+                    @endif
+                </div>
+                <div class="font-medium text-sm text-gray-500">
+                    {{ auth()->check() ? Auth::user()->email : '' }}
+                </div>
                 @else
-                    <div class="font-medium text-base text-gray-800">{{ __('Guest') }}</div>
+                <div class="font-medium text-base text-gray-800">{{ __('Guest') }}</div>
                 @endif
             </div>
 
@@ -157,14 +157,14 @@
                 <x-responsive-nav-link :href="auth()->guard('admin')->check() 
                                             ? route('admin.dashboard') 
                                             : (auth()->guard('organizer')->check() 
-                                                ? route('organizer.dashboard') 
+                                                ? route('profile.edit') 
                                                 : route('profile.edit'))">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
 
                 <!-- Logout -->
-                <form method="POST" 
-                      action="{{ auth()->guard('admin')->check() 
+                <form method="POST"
+                    action="{{ auth()->guard('admin')->check() 
                                     ? route('admin.logout') 
                                     : (auth()->guard('organizer')->check() 
                                         ? route('organizer.logout') 
@@ -175,7 +175,7 @@
                                             : (auth()->guard('organizer')->check() 
                                                 ? route('organizer.logout') 
                                                 : route('logout'))"
-                                         onclick="event.preventDefault(); this.closest('form').submit();">
+                        onclick="event.preventDefault(); this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
                 </form>
