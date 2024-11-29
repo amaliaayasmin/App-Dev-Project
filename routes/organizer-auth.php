@@ -19,7 +19,7 @@ Route::prefix('organizer')->middleware('guest:organizer')->group(function () {
 Route::prefix('organizer')->middleware('auth:organizer')->group(function () {
 
     Route::get('/dashboard', function () {
-        return view('organizer.dashboard');
+        return view('Organizer.dashboard');
     })->name('organizer.dashboard');
 
     Route::get('/profile', [OrganizerProfileController::class, 'edit'])->name('organizer.profile.edit');

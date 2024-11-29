@@ -28,7 +28,7 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('Organizer.dashboard', absolute: false));
+        return redirect()->intended(route('organizer.dashboard', absolute: false));
     }
 
     /**
