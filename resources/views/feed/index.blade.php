@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('content')
 
 <!DOCTYPE html>
@@ -8,7 +9,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
 
     <script>
         // Function to show "Program successfully applied" message
@@ -39,7 +39,6 @@
         margin-right: 15px;
         margin-top: 15px;
         margin-bottom: 15px;
-
     }
 
     .content {
@@ -117,7 +116,6 @@
         font-size: 30px;
         font-weight: bold;
         color: #800000;
-        /* Maroon */
         margin: 20px;
     }
 
@@ -133,69 +131,79 @@
             <h1 class="upcoming-header">Upcoming Events</h1>
         </div>
 
-        <div class="row m-0 p-1">
-            @foreach($posts as $post)
-            <div class="col-12 shadow-sm custom-bg p-2 d-flex mb-3 br5">
-                <div class="image">
-                    <img class="br5" src="{{ asset('images/' . $post->image) }}" width="100%" height="100%">
-                </div>
-                <div class="px-2 content">
-                    <a href="javascript:void(0);" onclick="toggleBookmark(this)" class="float-end">
-                        <svg id="bookmark-icon" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#800000" stroke-width="2" viewBox="0 0 24 24" width="24" height="24" class="bookmark">
-                            <path d="M6 3h12a2 2 0 0 1 2 2v16l-8-4-8 4V5a2 2 0 0 1 2-2z" />
-                        </svg>
-                    </a>
+        <form action="{{ route('feed.search') }}" method="GET" class="d-flex mb-3">
+            <input type="text" name="query" class="form-control" placeholder="Search events..." value="{{ request()->query('query') }}">
+            <button type="submit" class="btn btn-primary ms-2">Search</button>
+        </form>
 
-
-                    <script>
-                        function toggleBookmark(element) {
-                            // Get the SVG element
-                            const svg = element.querySelector("svg");
-
-                            // Check the current state (filled or not filled)
-                            if (svg.getAttribute("fill") === "none") {
-                                // Fill the bookmark with maroon color
-                                svg.setAttribute("fill", "#800000"); // Maroon fill
-                            } else {
-                                // Reset the bookmark to empty
-                                svg.setAttribute("fill", "none");
-                            }
-                        }
-                    </script>
-                    <!-- Content details -->
-                    <p class="mb-1 fw600 fz120">{{ $post->title }}</p>
-                    <p class="mb-1 fw400 fz90">LOCATION: {{ $post->location }}</p>
-                    <p class="mb-1 text-cl fw400 fz90">START DATE: {{ $post->start_date }}</p>
-                    <p class="mb-1 text-cl fw400 fz90">END DATE: {{ $post->end_date }}</p>
-                    <p class="mb-1 fw400 fz90">START TIME: {{ $post->start_time }}</p>
-                    <p class="mb-1 fw400 fz90">END TIME: {{ $post->end_time }}</p>
-                    <p class="mb-1 fw400 fz90">BENEFITS: {{ $post->benefits }}</p>
-                    <p class="mb-1 fw400 fz90">DESCRIPTIONS: {{ $post->description }}</p>
-
-                    <button class="btn btn-success float-end mt-2" onclick="changeButtonText(this)">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                        Quick Apply
-                    </button>
-
-
-                    <script>
-                        function changeButtonText(button) {
-                            // Change the text to 'Applied'
-                            button.innerHTML = '<i class="fa fa-check" aria-hidden="true"></i> Applied';
-                            // Optionally, change the button class to reflect a different state
-                            button.classList.remove('btn-success');
-                            button.classList.add('btn-secondary'); // This changes the button color to grey
-                        }
-                    </script>
-
-                    <!-- Messages 
-                    <div id="success-message">Program successfully applied</div>
-                    <div id="wishlist-message">Program added to wishlist</div>-->
-                </div>
+        <!-- Filter Form -->
+        <form action="{{ route('feed') }}" method="GET" class="mb-4">
+            <div class="d-flex">
+                <input type="text" name="organization" class="form-control me-2" placeholder="Filter by Organization" value="{{ request('organization') }}">
+                <input type="date" name="date" class="form-control me-2" placeholder="Filter by Date" value="{{ request('date') }}">
+                <input type="text" name="activity_type" class="form-control me-2" placeholder="Filter by Activity Type" value="{{ request('activity_type') }}">
+                <button type="submit" class="btn btn-primary">Apply Filters</button>
             </div>
-            @endforeach
-        </div>
+        </form>
+
+        <!-- Check if there are posts or not -->
+        @if($posts->isEmpty())
+            <p>No posts found matching your filter criteria.</p>
+        @else
+            <div class="row m-0 p-1">
+                @foreach($posts as $post)
+                <div class="col-12 shadow-sm custom-bg p-2 d-flex mb-3 br5">
+                    <div class="image">
+                        <img class="br5" src="{{ asset('images/' . $post->image) }}" width="100%" height="100%">
+                    </div>
+                    <div class="px-2 content">
+                        <a href="javascript:void(0);" onclick="toggleBookmark(this)" class="float-end">
+                            <svg id="bookmark-icon" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#800000" stroke-width="2" viewBox="0 0 24 24" width="24" height="24" class="bookmark">
+                                <path d="M6 3h12a2 2 0 0 1 2 2v16l-8-4-8 4V5a2 2 0 0 1 2-2z" />
+                            </svg>
+                        </a>
+
+                        <script>
+                            function toggleBookmark(element) {
+                                const svg = element.querySelector("svg");
+                                if (svg.getAttribute("fill") === "none") {
+                                    svg.setAttribute("fill", "#800000"); // Maroon fill
+                                } else {
+                                    svg.setAttribute("fill", "none");
+                                }
+                            }
+                        </script>
+                        
+                        <!-- Content details -->
+                        <p class="mb-1 fw600 fz120">{{ $post->title }}</p>
+                        <p class="mb-1 fw400 fz90">LOCATION: {{ $post->location }}</p>
+                        <p class="mb-1 text-cl fw400 fz90">START DATE: {{ $post->start_date }}</p>
+                        <p class="mb-1 text-cl fw400 fz90">END DATE: {{ $post->end_date }}</p>
+                        <p class="mb-1 fw400 fz90">START TIME: {{ $post->start_time }}</p>
+                        <p class="mb-1 fw400 fz90">END TIME: {{ $post->end_time }}</p>
+                        <p class="mb-1 fw400 fz90">BENEFITS: {{ $post->benefits }}</p>
+                        <p class="mb-1 fw400 fz90">DESCRIPTIONS: {{ $post->description }}</p>
+
+                        <button class="btn btn-success float-end mt-2" onclick="changeButtonText(this)">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            Quick Apply
+                        </button>
+
+                        <script>
+                            function changeButtonText(button) {
+                                button.innerHTML = '<i class="fa fa-check" aria-hidden="true"></i> Applied';
+                                button.classList.remove('btn-success');
+                                button.classList.add('btn-secondary');
+                            }
+                        </script>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        @endif
+    </div>
 </body>
 
 </html>
+
 @endsection
