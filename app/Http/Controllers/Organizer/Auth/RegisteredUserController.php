@@ -45,6 +45,6 @@ class RegisteredUserController extends Controller
 
         Auth::guard('organizer')->login($organizer);
 
-        return redirect(route('organizer.dashboard', absolute: false));
+        return redirect(route('Organizer.dashboard', absolute: false));
     }
 }
