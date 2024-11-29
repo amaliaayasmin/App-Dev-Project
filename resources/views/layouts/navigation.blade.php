@@ -64,11 +64,11 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <!-- Profile Link -->
+                        <!-- Profile Link s-->
                         <x-dropdown-link :href="auth()->guard('admin')->check() 
                                             ? route('admin.dashboard') 
                                             : (auth()->guard('organizer')->check() 
-                                                ? route('profile.edit')
+                                                ? route('organizer.profile.edit')
                                                 : route('profile.edit'))">
                             {{ __('Profile') }}
                         </x-dropdown-link>
@@ -157,7 +157,7 @@
                 <x-responsive-nav-link :href="auth()->guard('admin')->check() 
                                             ? route('admin.dashboard') 
                                             : (auth()->guard('organizer')->check() 
-                                                ? route('profile.edit') 
+                                                ? route('organizer.profile.edit') 
                                                 : route('profile.edit'))">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>

@@ -12,7 +12,7 @@
                         </div>
                         <div class="card-body">
                                 <!-- Form to create a new post -->
-                                <form action="{{ route('post.update', $post->id) }}" method="POST"enctype="multipart/form-data"> >
+                                <form action="{{ route('post.update', $post->id) }}" method="POST"enctype="multipart/form-data"> 
                                     @csrf
                                     @method('PUT')
 
