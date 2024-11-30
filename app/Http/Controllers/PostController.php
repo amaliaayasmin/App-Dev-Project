@@ -128,5 +128,19 @@ class PostController extends Controller
         return redirect('/post') ;
     }
 
+    public function search(Request $request)
+{
+    // Get the search query from the request
+    $query = $request->input('query');
+
+    // Search posts by title, description, or any other fields you want
+    $posts = Post::where('title', 'like', '%' . $query . '%')
+                ->orWhere('description', 'like', '%' . $query . '%')
+                ->get();
+
+    // Return the results to the view
+    return view('feed.index', compact('posts'));
+}
+
 
 }

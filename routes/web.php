@@ -37,7 +37,7 @@ require __DIR__.'/organizer-auth.php';
 
 Route::get('/admin/dashboard', [ShowController::class, 'show'])->name('admin.dashboard');
 Route::get('/feed', [FeedController::class, 'index'])->name('feed.index');
-Route::get('/feed/search', [FeedController::class, 'index'])->name('feed.search');
-
+//Route::get('/feed/search', [FeedController::class, 'index'])->name('feed.search');
+Route::get('/feed/search', [PostController::class, 'search'])->name('feed.search');
 //Route::get('/feed', [FeedController::class, 'index'])->name('feed.index');
 
