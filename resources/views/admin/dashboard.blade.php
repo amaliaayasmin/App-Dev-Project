@@ -19,11 +19,11 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($organizers as $organizer)
+                @foreach($Organizers as $Organizer)
                     <tr>
-                        <td>{{ $organizer->id }}</td>
-                        <td>{{ $organizer->name }}</td>
-                        <td>{{ $organizer->email }}</td>
+                        <td>{{ $Organizer->id }}</td>
+                        <td>{{ $Organizer->name }}</td>
+                        <td>{{ $Organizer->email }}</td>
                     </tr>
                 @endforeach
             </tbody>
