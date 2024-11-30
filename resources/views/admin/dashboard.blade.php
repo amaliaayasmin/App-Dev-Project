@@ -18,15 +18,7 @@
                     <th>Email</th>
                 </tr>
             </thead>
-            <tbody>
-                @foreach($Organizers as $Organizer)
-                    <tr>
-                        <td>{{ $Organizer->id }}</td>
-                        <td>{{ $Organizer->name }}</td>
-                        <td>{{ $Organizer->email }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
+           
         </table>
     </div>
 @endsection
