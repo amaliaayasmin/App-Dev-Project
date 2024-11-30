@@ -88,20 +88,11 @@ class PostController extends Controller
             'end_time' => 'nullable',
             'benefits' => 'nullable|string|max:255',
             'description' => 'nullable|string',
-            'image' =>'nullable|image|mimes:png,jpg,jpeg|max:2048' 
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
-        $filename = null;
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('images'), $filename);
-
-            if (File::exists(public_path('images/' . $post->image))){
-                    File::delete($post->image);
-            }
-        }
-        $post->update(([
+    
+        // Prepare data for updating
+        $data = [
             'title' => $request->title,
             'location' => $request->location,
             'start_date' => $request->start_date,
@@ -110,12 +101,28 @@ class PostController extends Controller
             'end_time' => $request->end_time,
             'benefits' => $request->benefits,
             'description' => $request->description,
-            'image' => $filename, 
-        ]));
-
-        return redirect('/post');
+        ];
+    
+        // Handle the image upload
+        if ($request->hasFile('image')) {
+            // Delete the old image if it exists
+            if ($post->image && File::exists(public_path('images/' . $post->image))) {
+                File::delete(public_path('images/' . $post->image));
+            }
+    
+            // Upload the new image
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images'), $imageName);
+            $data['image'] = $imageName; // Set the new image name in data
+        }
+    
+        // Update the post with the new data
+        $post->update($data);
+    
+        return redirect()->route('post.index')->with('success', 'Post updated successfully.');
     }
 
+    
     public function destroy (Post $post) 
     { 
         // Check if the post has an image
@@ -142,7 +149,7 @@ class PostController extends Controller
     return view('feed.index', compact('posts'));
 }
 
-public function viewApplicants(Post $post)
+    public function viewApplicants(Post $post)
     {
         // Fetch applicants for the specific post
         $applicants = $post->applicants; // No need to use with('user')

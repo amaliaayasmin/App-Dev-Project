@@ -93,10 +93,15 @@
                                         @enderror
                                     </div>
 
-                                    <div class="mb-4">
-                                    <label>Upload File/Image</label>
-                                    <input type="file" name="image" class="form-control" />
+                                    <div class="mb-3">
+                                        <label for="image" class="form-label">Image</label>
+                                        <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                                        @if ($post->image)
+                                            <p>Current Image:</p>
+                                            <img src="{{ asset('images/' . $post->image) }}" alt="Current Image" style="max-width: 200px; height: auto;">
+                                        @endif
                                     </div>
+                                    
                                     <!-- Submit Button -->
                                     <div class="flex items-center justify-end mt-4">
                                         <button type="submit" class="btn btn-primary">
