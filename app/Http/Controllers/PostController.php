@@ -142,5 +142,13 @@ class PostController extends Controller
     return view('feed.index', compact('posts'));
 }
 
+public function viewApplicants(Post $post)
+    {
+        // Fetch applicants for the specific post
+        $applicants = $post->applicants; // No need to use with('user')
+
+        // Return the view with the applicants data
+        return view('Organizer.applicants', compact('post', 'applicants'));
+    }
 
 }

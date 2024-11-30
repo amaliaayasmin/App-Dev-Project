@@ -27,9 +27,9 @@
                         @foreach ($posts as $post)
                             <div class="col-md-4">
                                 <div class="card mb-3">
-                                    <img src="{{ asset('images/' . $post->image) }}" class="card-img-top" alt="{{ $post->title }}" style="height: 150px; object-fit: cover;">
+                                    <img src="{{ asset('images/' . $post->image) }}" class="card-img-top" alt="{{ $post->title }}" style="height: 150px; object-fit: cover; ">
                                     <div class="card-body">
-                                        <h5 class="card-title">{{ $post->title }}</h5>
+                                        <h5 class="card-title"><strong>{{ $post->title }}</strong></h5>
                                         <p class="card-text">
                                             <strong>Start Date:</strong> {{ $post->start_date }}<br>
                                             <strong>End Date:</strong> {{ $post->end_date }}
@@ -38,6 +38,8 @@
                                             <div>
                                                 <a href="{{ route('post.edit', $post->id) }}" class="btn btn-success btn-sm">Edit</a>
                                                 <a href="{{ route('post.show', $post->id) }}" class="btn btn-info btn-sm">Show</a>
+                                                <a href="{{ route('post.applicants', $post->id) }}" class="btn btn-warning btn-sm">See Applicants</a>
+
                                             </div>
                                             <form action="{{ route('post.destroy', $post->id) }}" method="POST" class="d-inline">
                                                 @csrf

@@ -23,8 +23,8 @@
                     </x-nav-link>
                     @endif
 
-                    <!-- Feed (For Students and Organizers) -->
-                    @if(auth()->guard('organizer')->check() || auth()->guard('web')->check())
+                    <!-- Feed (For Students) -->
+                    @if(auth()->guard('web')->check())
                     <x-nav-link :href="route('feed')" :active="request()->routeIs('feed')">
                         {{ __('Feed') }}
                     </x-nav-link>
@@ -36,6 +36,14 @@
                         {{ __('Post') }}
                     </x-nav-link>
                     @endif
+
+                     <!-- Applications (For Students Only) -->
+                     @if(auth()->guard('web')->check())
+                     <x-nav-link :href="route('applications.index')" :active="request()->routeIs('applications.index')">
+                         {{ __('Applications') }}
+                     </x-nav-link>
+                     @endif
+ 
                 </div>
             </div>
 
@@ -113,8 +121,8 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
-            <!-- Feed (For Students and Organizers) -->
-            @if(auth()->guard('organizer')->check() || auth()->guard('web')->check())
+            <!-- Feed (For Students) -->
+            @if(auth()->guard('web')->check())
             <x-responsive-nav-link :href="route('feed')" :active="request()->routeIs('feed')">
                 {{ __('Feed') }}
             </x-responsive-nav-link>
@@ -126,6 +134,15 @@
                 {{ __('Post') }}
             </x-responsive-nav-link>
             @endif
+
+             <!-- Applications (For Students Only) -->
+             @if(auth()->guard('web')->check())
+             <x-nav-link :href="route('applications.index')" :active="request()->routeIs('applications.index')">
+                 {{ __('Applications') }}
+             </x-nav-link>
+             @endif
+
+            
         </div>
 
         <!-- Responsive Settings Options -->

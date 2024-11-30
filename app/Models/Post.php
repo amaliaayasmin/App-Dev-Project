@@ -26,5 +26,10 @@ class Post extends Model
    {
       return $this->belongsTo(Organizer::class);
    }
-   
+
+   public function applicants()
+{
+    return $this->belongsToMany(User::class, 'applied_programs', 'post_id', 'user_id')->withTimestamps();
+}
+
 }

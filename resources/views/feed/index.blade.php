@@ -178,27 +178,46 @@
                         <a href="{{ route('post.show', $post->id) }}" style="text-decoration: none; color: inherit;">
                             <p class="mb-1 fw600 fz120">{{ $post->title }}</p>
                         </a>
-                        <p class="mb-1 fw400 fz90"> ORGANISER: {{ $post->organizer->name ?? 'N/A' }}</p>
-                        <p class="mb-1 fw400 fz90">LOCATION: {{ $post->location }}</p>
-                        <p class="mb-1 text-cl fw400 fz90">START DATE: {{ $post->start_date }}</p>
-                        <p class="mb-1 text-cl fw400 fz90">END DATE: {{ $post->end_date }}</p>
-                        <p class="mb-1 fw400 fz90">START TIME: {{ $post->start_time }}</p>
-                        <p class="mb-1 fw400 fz90">END TIME: {{ $post->end_time }}</p>
-                        <p class="mb-1 fw400 fz90">BENEFITS: {{ $post->benefits }}</p>
-                        <p class="mb-1 fw400 fz90">DESCRIPTIONS: {{ $post->description }}</p>
+                        <p class="mb-1 fw400 fz90"> Organizer: {{ $post->organizer->name ?? 'N/A' }}</p>
+                        <p class="mb-1 fw400 fz90">Location: {{ $post->location }}</p>
+                        <p class="mb-1 text-cl fw400 fz90">Start Date: {{ $post->start_date }}</p>
+                        <p class="mb-1 text-cl fw400 fz90">End Date: {{ $post->end_date }}</p>
+                        <p class="mb-1 fw400 fz90">Start Time: {{ $post->start_time }}</p>
+                        <p class="mb-1 fw400 fz90">End Time: {{ $post->end_time }}</p>
+                        <p class="mb-1 fw400 fz90">Benefits: {{ $post->benefits }}</p>
+                        <p class="mb-1 fw400 fz90">Descriptions: {{ $post->description }}</p>
 
-                        <button class="btn btn-success float-end mt-2" onclick="changeButtonText(this)">
-                            <i class="fa fa-plus" aria-hidden="true"></i>
-                            Quick Apply
+                        <button class="btn btn-success float-end mt-2" onclick="applyToProgram({{ $post->id }}, this)">
+                            <i class="fa fa-plus" aria-hidden="true"></i>Quick Apply
                         </button>
-
+                           
                         <script>
-                            function changeButtonText(button) {
-                                button.innerHTML = '<i class="fa fa-check" aria-hidden="true"></i> Applied';
-                                button.classList.remove('btn-success');
-                                button.classList.add('btn-secondary');
+                            function applyToProgram(postId, button) {
+                                fetch(`/apply/${postId}`, {
+                                    method: 'POST',
+                                    headers: {
+                                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                        'Content-Type': 'application/json',
+                                    },
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.message === 'Application submitted successfully') {
+                                        button.innerHTML = '<i class="fa fa-check" aria-hidden="true"></i> Applied';
+                                        button.classList.remove('btn-success');
+                                        button.classList.add('btn-secondary');
+                                        button.disabled = true;
+                                    } else {
+                                        alert(data.message);
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                    alert('Failed to apply. Please try again.');
+                                });
                             }
                         </script>
+
                     </div>
                 </div>
                 @endforeach

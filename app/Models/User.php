@@ -48,6 +48,12 @@ class User extends Authenticatable
         ];
     }
 
+    public function appliedPrograms()
+{
+    return $this->belongsToMany(Post::class, 'applied_programs', 'user_id', 'post_id')->withTimestamps();
+}
+
+
     
     
 }
