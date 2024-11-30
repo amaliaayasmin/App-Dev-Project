@@ -18,7 +18,7 @@ class FeedController extends Controller
         // Log the filter values to check what is being passed
         Log::info('Organization filter: ' . $organization);
         Log::info('Date filter: ' . $date);
-        Log::info('Activity Type filter: ' . $activityType);
+       // Log::info('Activity Type filter: ' . $activityType);
 
         // Start the query to fetch posts
         $query = Post::with('organizer'); 
@@ -30,14 +30,14 @@ class FeedController extends Controller
         if ($date) {
             $query->whereDate('start_date', $date);
         }
-        if ($activityType) {
+       /* if ($activityType) {
             $query->where('activity_type', 'like', '%' . $activityType . '%');
-        }
+        } */
 
         // Fetch the posts with the applied filters
         $posts = $query->paginate(10); // Adjust pagination as needed
 
         // Return the view with posts and filter values
-        return view('feed.index', compact('posts', 'organization', 'date', 'activityType'));
+        return view('feed.index', compact('posts', 'organization', 'date', /*'activityType'*/));
     }
 }

@@ -141,7 +141,7 @@
             <div class="d-flex">
                 <input type="text" name="organization" class="form-control me-2" placeholder="Filter by Organization" value="{{ request('organization') }}">
                 <input type="date" name="date" class="form-control me-2" placeholder="Filter by Date" value="{{ request('date') }}">
-                <input type="text" name="activity_type" class="form-control me-2" placeholder="Filter by Activity Type" value="{{ request('activity_type') }}">
+                <!--  <input type="text" name="activity_type" class="form-control me-2" placeholder="Filter by Activity Type" value="{{ request('activity_type') }}"> -->
                 <button type="submit" class="btn btn-primary">Apply Filters</button>
             </div>
         </form>
