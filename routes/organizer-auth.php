@@ -4,7 +4,8 @@ use App\Http\Controllers\Organizer\Auth\LoginController;
 use App\Http\Controllers\Organizer\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\OrganizerProfileController;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Route;use App\Http\Controllers\PostController; 
+
 
 Route::prefix('organizer')->middleware('guest:organizer')->group(function () {
 
@@ -27,6 +28,6 @@ Route::prefix('organizer')->middleware('auth:organizer')->group(function () {
     Route::delete('/profile', [OrganizerProfileController::class, 'destroy'])->name('organizer.profile.destroy');
 
     Route::put('password', [PasswordController::class, 'update'])->name('organizer.password.update');
-
+    Route::resource('post', PostController::class);
     Route::post('logout', [LoginController::class, 'destroy'])->name('organizer.logout');
 });

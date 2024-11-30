@@ -178,6 +178,7 @@
                         <a href="{{ route('post.show', $post->id) }}" style="text-decoration: none; color: inherit;">
                             <p class="mb-1 fw600 fz120">{{ $post->title }}</p>
                         </a>
+                        <p class="mb-1 fw400 fz90"> ORGANISER: {{ $post->organizer->name ?? 'N/A' }}</p>
                         <p class="mb-1 fw400 fz90">LOCATION: {{ $post->location }}</p>
                         <p class="mb-1 text-cl fw400 fz90">START DATE: {{ $post->start_date }}</p>
                         <p class="mb-1 text-cl fw400 fz90">END DATE: {{ $post->end_date }}</p>

@@ -4,6 +4,7 @@
 <div class="container">
     <h1>{{ $post->title }}</h1>
     <p>{{ $post->description }}</p>
+    <p>Organizer: {{ $post->organizer->name ?? 'N/A' }}</p>
     <p>Location: {{ $post->location }}</p>
     <p>Start Date: {{ $post->start_date }}</p>
     <p>End Date: {{ $post->end_date }}</p>

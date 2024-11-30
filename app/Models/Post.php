@@ -17,7 +17,13 @@ class Post extends Model
         'end_time',
         'benefits',
         'description',
-        'image'
+        'image',
+        'organizer_id'
    ];
 
+   public function organizer()
+   {
+      return $this->belongsTo(Organizer::class);
+   }
+   
 }

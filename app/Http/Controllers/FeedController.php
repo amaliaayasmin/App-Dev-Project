@@ -21,7 +21,7 @@ class FeedController extends Controller
         Log::info('Activity Type filter: ' . $activityType);
 
         // Start the query to fetch posts
-        $query = Post::query();
+        $query = Post::with('organizer'); 
 
         // Apply filters if they are present
         if ($organization) {
