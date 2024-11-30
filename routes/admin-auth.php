@@ -19,8 +19,12 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
 
     // Admin Dashboard
     Route::get('/dashboard', function () {
-        return view('admin.dashboard');
+        // Fetch organizers data
+        $organizers = \App\Models\Organizer::all(); // Assuming the Organizer model is in the App\Models namespace
+
+        return view('admin.dashboard', compact('organizers'));
     })->name('admin.dashboard');
+    
 
     
     // Admin Logout

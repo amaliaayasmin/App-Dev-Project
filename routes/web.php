@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('post', PostController::class);
 
-Route::get('/admin/dashboard', action: [ShowController::class, 'show'])->name('admin.dashboard');
+Route::get('/admin/dashboard', [ShowController::class, 'showController'])->name('admin.dashboard');
 Route::get('/organizer/dashboard', action: [ShowController::class, 'show'])->name('organizer.dashboard');
 
 

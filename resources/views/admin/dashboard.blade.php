@@ -18,7 +18,15 @@
                     <th>Email</th>
                 </tr>
             </thead>
-           
+            <tbody>
+                @foreach($organizers as $organizer)
+                    <tr>
+                        <td>{{ $organizer->id }}</td>
+                        <td>{{ $organizer->name }}</td>
+                        <td>{{ $organizer->email }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
         </table>
     </div>
 @endsection

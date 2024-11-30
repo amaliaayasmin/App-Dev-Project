@@ -7,7 +7,7 @@ use App\Models\Organizer;
 
 class ShowController extends Controller
 {
-    public function show()
+    public function showController()
     {
 
         $organizers=Organizer::all();
