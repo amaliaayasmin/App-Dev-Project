@@ -23,14 +23,14 @@ class Post extends Model
    ];
 
    public function organizer()
-{
-    return $this->belongsTo(Organizer::class, 'organizer_id');
-}
 
+   {
+    return $this->belongsTo(Organizer::class);
+    }
 
    public function applicants()
-{
+    {
     return $this->belongsToMany(User::class, 'applied_programs', 'post_id', 'user_id')->withTimestamps();
-}
+    }
 
 }

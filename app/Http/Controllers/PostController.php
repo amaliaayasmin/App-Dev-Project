@@ -1,29 +1,24 @@
 <?php
 
-namespace App\Http\Controllers;
-use App\Models\Post;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
-use App\Models\Organizer;
+    namespace App\Http\Controllers;
+    use App\Models\Post;
+    use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\File;
+
 
 class PostController extends Controller
 {
-    public function index(Request $request)
-{
-    $query = Post::query();
+    public function index()
+    {
+        // Get the authenticated organizer
+        $organizer = auth()->guard('organizer')->user();
 
-    // Apply organization filter if provided
-    if ($request->has('organization_id') && $request->organization_id) {
-        $query->where('organizer_id', $request->organization_id);
-    }
+        // Retrieve only the posts that belong to the authenticated organizer
+        $posts = Post::where('organizer_id', $organizer->id)->get();
 
-    // Fetch posts and organizations for the filter
-    $posts = $query->get();
-    $organizations = Organizer::all();
+        return view('post.index', compact('posts'));    }
 
-    return view('post.index', compact('posts', 'organizations'));
-}
-public function create()
+    public function create()
     {
         return view('post.create');
     }
@@ -95,7 +90,7 @@ public function create()
             'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-    
+
         // Prepare data for updating
         $data = [
             'title' => $request->title,
@@ -153,6 +148,7 @@ public function create()
     // Return the results to the view
     return view('feed.index', compact('posts'));
 }
+
 
     public function viewApplicants(Post $post)
     {

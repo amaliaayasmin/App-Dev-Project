@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
@@ -10,13 +9,11 @@ use App\Http\Controllers\ShowController;
 use App\Http\Controllers\ApplyController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\StudentController;
-
+use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
     return view('welcome');
 });
-
-use Illuminate\Support\Facades\DB;
 
 Route::get('/feed', [FeedController::class, 'index'])->name('feed');
 
