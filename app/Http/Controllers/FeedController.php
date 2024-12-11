@@ -11,26 +11,26 @@ class FeedController extends Controller
     public function index(Request $request)
     {
         // Get filter values from the request
-        $organization = $request->get('organization');
+        $organizerId = $request->get('organizer_id');
         $date = $request->get('date');
         $activityType = $request->get('activity_type');
         
         // Log the filter values to check what is being passed
-        Log::info('Organization filter: ' . $organization);
+        Log::info('Organizer ID filter: ' . $organizerId);
         Log::info('Date filter: ' . $date);
        // Log::info('Activity Type filter: ' . $activityType);
 
         // Start the query to fetch posts
-        $query = Post::with('organizer'); 
+        $query = Post::with('organizer'); // 'organizer' should be the relationship method defined in the Post model.
 
         // Apply filters if they are present
-        if ($organization) {
-            $query->where('organization', 'like', '%' . $organization . '%');
+        if ($organizerId) {
+            $query->where('organizer_id', $organizerId);
         }
         if ($date) {
             $query->whereDate('start_date', $date);
         }
-       /* if ($activityType) {
+        /* if ($activityType) {
             $query->where('activity_type', 'like', '%' . $activityType . '%');
         } */
 
@@ -38,6 +38,6 @@ class FeedController extends Controller
         $posts = $query->paginate(10); // Adjust pagination as needed
 
         // Return the view with posts and filter values
-        return view('feed.index', compact('posts', 'organization', 'date', /*'activityType'*/));
+        return view('feed.index', compact('posts', 'organizerId', 'date'));
     }
 }

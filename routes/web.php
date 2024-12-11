@@ -48,4 +48,6 @@ Route::get('/my-applications', [ApplicationController::class, 'index'])->name('a
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
+    Route::get('/programs', [PostController::class, 'index'])->name('programs.index');
+
 });

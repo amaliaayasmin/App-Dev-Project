@@ -8,20 +8,22 @@ use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
-    public function index()
-    {
-        // Get the authenticated organizer
-        $organizer = auth()->guard('organizer')->user();
+    public function index(Request $request)
+{
+    $query = Post::query();
 
-        // Retrieve only the posts that belong to the authenticated organizer
-        $posts = Post::where('organizer_id', $organizer->id)->get();
-
-        return view('post.index', compact('posts'));    }
-
-    public function create()
-    {
-        return view('post.create');
+    // Apply organization filter if provided
+    if ($request->has('organization_id') && $request->organization_id) {
+        $query->where('organizer_id', $request->organization_id);
     }
+
+    // Fetch posts and organizations for the filter
+    $posts = $query->get();
+    $organizations = Organizer::all();
+
+    return view('post.index', compact('posts', 'organizations'));
+}
+
 
     public function store(Request $request)
 {

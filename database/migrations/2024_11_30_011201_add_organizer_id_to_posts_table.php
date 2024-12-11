@@ -12,17 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->foreignId('organizer_id')->constrained()->onDelete('cascade'); // This line adds the foreign key
+            // Add the organizer_id column and set it as a foreign key
+            $table->foreignId('organizer_id')->constrained()->onDelete('cascade');
         });
     }
-
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
         Schema::table('posts', function (Blueprint $table) {
-            //
+            // Remove the foreign key and the column
+            $table->dropForeign(['organizer_id']);
+            $table->dropColumn('organizer_id');
         });
     }
 };

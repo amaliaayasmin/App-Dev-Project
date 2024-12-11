@@ -23,9 +23,10 @@ class Post extends Model
    ];
 
    public function organizer()
-   {
-      return $this->belongsTo(Organizer::class);
-   }
+{
+    return $this->belongsTo(Organizer::class, 'organizer_id');
+}
+
 
    public function applicants()
 {
