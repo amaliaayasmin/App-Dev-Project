@@ -21,7 +21,7 @@
 
             <!-- Filter Form -->
             <div class="my-3">
-    <form action="{{ route('posts.index') }}" method="GET">
+    <form action="{{ route('post.index') }}" method="GET">
         <label for="organizer_id">Filter by Organizer:</label>
         <select name="organizer_id" id="organizer_id" class="form-select w-25 d-inline-block" onchange="this.form.submit()">
             <option value="">All Organizers</option>
