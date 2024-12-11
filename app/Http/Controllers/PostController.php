@@ -23,7 +23,10 @@ class PostController extends Controller
 
     return view('post.index', compact('posts', 'organizations'));
 }
-
+public function create()
+    {
+        return view('post.create');
+    }
 
     public function store(Request $request)
 {
