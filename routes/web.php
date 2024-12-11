@@ -10,6 +10,7 @@ use App\Http\Controllers\ApplyController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\ApplicantController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -51,3 +52,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/programs', [PostController::class, 'index'])->name('programs.index');
  
 });
+
+
+
+
+Route::get('/applications', [ApplicationController::class, 'index'])->name('applications.index');
+Route::post('/post/{postId}/applicant/{applicantId}/accept', [PostController::class, 'accept'])->name('post.accept');
+Route::post('/post/{postId}/applicant/{applicantId}/reject', [PostController::class, 'reject'])->name('post.reject');

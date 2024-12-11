@@ -4,7 +4,7 @@
     use App\Models\Post;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\File;
-
+    use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -150,12 +150,31 @@ class PostController extends Controller
 }
 
 
+public function accept($postId, $userId)
+    {
+        // Update the status to 'accepted' in the applied_programs table
+        DB::table('applied_programs')
+            ->where('user_id', $userId)
+            ->where('post_id', $postId)
+            ->update(['status' => 'accepted']);
+
+        return redirect()->back()->with('success', 'Applicant accepted successfully.');
+    }
+
+    public function reject($postId, $userId)
+    {
+        // Update the status to 'rejected' in the applied_programs table
+        DB::table('applied_programs')
+            ->where('user_id', $userId)
+            ->where('post_id', $postId)
+            ->update(['status' => 'rejected']);
+
+        return redirect()->back()->with('success', 'Applicant rejected successfully.');
+    }  
+    
     public function viewApplicants(Post $post)
     {
-        // Fetch applicants for the specific post
-        $applicants = $post->applicants; // No need to use with('user')
-
-        // Return the view with the applicants data
+        $applicants = $post->applicantsWithStatus; // Fetch applicants with status
         return view('Organizer.applicants', compact('post', 'applicants'));
     }
 

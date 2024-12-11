@@ -25,6 +25,7 @@
                     <th class="border px-4 py-2 bg-gray-100">Email</th>
                     <th class="border px-4 py-2 bg-gray-100">Applied At</th>
                     <th class="border px-4 py-2 bg-gray-100">Program Title</th>
+                    <th class="border px-4 py-2 bg-gray-100">Status</th>
                     <th class="border px-4 py-2 bg-gray-100">Actions</th>
                 </tr>
             </thead>
@@ -45,12 +46,19 @@
                         </td>
                         <td class="border px-4 py-2">{{ $post->title }}</td>
                         <td class="border px-4 py-2">
-                            <a 
-                                href="{{ route('students.show', $applicant->id) }}" 
-                                class="btn btn-primary text-white px-4 py-2 rounded"
-                            >
-                                View Profile
-                            </a>
+                            <span class="font-semibold {{ $applicant->pivot->status == 'accepted' ? 'text-green-600' : ($applicant->pivot->status == 'rejected' ? 'text-red-600' : 'text-yellow-600') }}">
+                                {{ ucfirst($applicant->pivot->status) }}
+                            </span>
+                        </td>
+                        <td class="border px-4 py-2">
+                            <form action="{{ route('post.accept', [$post->id, $applicant->id]) }}" method="POST" style="display:inline;">
+                                @csrf
+                                <button type="submit" class="btn btn-success text-white px-4 py-2 rounded">Accept</button>
+                            </form>
+                            <form action="{{ route('post.reject', [$post->id, $applicant->id]) }}" method="POST" style="display:inline;">
+                                @csrf
+                                <button type="submit" class="btn btn-danger text-white px-4 py-2 rounded">Reject</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
