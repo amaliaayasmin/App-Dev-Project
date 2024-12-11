@@ -9,6 +9,8 @@ use App\Http\Controllers\FeedController;
 use App\Http\Controllers\ShowController;
 use App\Http\Controllers\ApplyController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\StudentController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -45,9 +47,10 @@ require __DIR__.'/organizer-auth.php';
 Route::post('/apply/{post}', [ApplyController::class, 'store'])->name('apply.store');
 Route::get('/organizer/posts/{post}/applicants', [PostController::class, 'viewApplicants'])->name('post.applicants');
 Route::get('/my-applications', [ApplicationController::class, 'index'])->name('applications.index');
+Route::get('/students/{id}', [StudentController::class, 'show'])->name('students.show');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
     Route::get('/programs', [PostController::class, 'index'])->name('programs.index');
-
+ 
 });

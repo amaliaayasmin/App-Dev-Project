@@ -5,7 +5,7 @@
         </h2>
 
         <p class="mt-1 text-sm text-gray-600">
-            {{ __("Update your account's profile information and email address.") }}
+            {{ __("Update your account's profile information, email address, and other details.") }}
         </p>
     </header>
 
@@ -13,16 +13,28 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" enctype="multipart/form-data" class="mt-6 space-y-6">
         @csrf
         @method('patch')
 
+        <!-- Profile Image -->
+        <div>
+            <x-input-label for="profile_image" :value="__('Profile Image')" />
+            @if ($user->profile_image)
+                <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Profile Image" class="w-20 h-20 rounded-full object-cover mt-2">
+            @endif
+            <input id="profile_image" name="profile_image" type="file" class="mt-2 block w-full" />
+            <x-input-error class="mt-2" :messages="$errors->get('profile_image')" />
+        </div>
+
+        <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
+        <!-- Email -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
@@ -47,6 +59,42 @@
             @endif
         </div>
 
+        <!-- University -->
+        <div>
+            <x-input-label for="university" :value="__('University')" />
+            <x-text-input id="university" name="university" type="text" class="mt-1 block w-full" :value="old('university', $user->university)" />
+            <x-input-error class="mt-2" :messages="$errors->get('university')" />
+        </div>
+
+        <!-- Faculty -->
+        <div>
+            <x-input-label for="faculty" :value="__('Faculty')" />
+            <x-text-input id="faculty" name="faculty" type="text" class="mt-1 block w-full" :value="old('faculty', $user->faculty)" />
+            <x-input-error class="mt-2" :messages="$errors->get('faculty')" />
+        </div>
+
+        <!-- Languages -->
+        <div>
+            <x-input-label for="languages" :value="__('Languages')" />
+            <x-text-input id="languages" name="languages" type="text" class="mt-1 block w-full" :value="old('languages', $user->languages)" placeholder="e.g., English, French, Spanish" />
+            <x-input-error class="mt-2" :messages="$errors->get('languages')" />
+        </div>
+
+        <!-- Location -->
+        <div>
+            <x-input-label for="location" :value="__('Location')" />
+            <x-text-input id="location" name="location" type="text" class="mt-1 block w-full" :value="old('location', $user->location)" placeholder="e.g., New York, USA" />
+            <x-input-error class="mt-2" :messages="$errors->get('location')" />
+        </div>
+
+        <!-- Experience -->
+        <div>
+            <x-input-label for="experience" :value="__('Experience')" />
+            <textarea id="experience" name="experience" class="mt-1 block w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-500 focus:ring-indigo-500" rows="5">{{ old('experience', $user->experience) }}</textarea>
+            <x-input-error class="mt-2" :messages="$errors->get('experience')" />
+        </div>
+
+        <!-- Save Button and Flash Message -->
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 

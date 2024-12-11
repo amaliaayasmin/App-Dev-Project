@@ -25,6 +25,15 @@ class ProfileUpdateRequest extends FormRequest
                 'max:255',
                 Rule::unique(User::class)->ignore($this->user()->id),
             ],
+            // Validation for profile_image
+            'profile_image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            
+            // Validation for new fields
+            'university' => ['nullable', 'string', 'max:255'],
+            'faculty' => ['nullable', 'string', 'max:255'],
+            'languages' => ['nullable', 'string', 'max:255'],
+            'location' => ['nullable', 'string', 'max:255'],
+            'experience' => ['nullable', 'string'], // No character limit as it might be long text
         ];
     }
 }
