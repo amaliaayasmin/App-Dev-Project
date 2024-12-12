@@ -5,15 +5,6 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight me-5">
                 {{ __('Student Dashboard') }}
             </h2>
-            
-            <!-- Search Form -->
-            <form method="GET" action="{{ route('dashboard.search') }}" class="d-flex">
-                <input type="text" name="query" class="form-control" placeholder="Enter search term..." value="{{ request('query') }}">
-                <!-- Button with search icon -->
-                <button type="submit" class="btn ms-2" style="background-color: #750000; color: white;">
-                    <i class="fas fa-search"></i> 
-                </button>
-            </form>
         </div>
     </x-slot>
 

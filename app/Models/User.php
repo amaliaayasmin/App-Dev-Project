@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Post;
 
 class User extends Authenticatable
 {
@@ -55,11 +56,9 @@ class User extends Authenticatable
     }
 
     public function appliedPrograms()
-    {
-        return $this->belongsToMany(Post::class, 'applied_programs', 'user_id', 'post_id') ->withPivot('status', 'created_at'); ;
+    { 
+        return $this->belongsToMany(Post::class, 'applied_programs', 'user_id', 'post_id')
+        ->withPivot('status', 'created_at')
+        ->withTimestamps();  
     }
-
-
-    
-    
 }

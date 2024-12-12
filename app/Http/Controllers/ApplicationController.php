@@ -16,9 +16,4 @@ class ApplicationController extends Controller
         return view('applications.index', compact('appliedPrograms')); // Pass the data to the view
     }
 
-    public function appliedPrograms()
-{
-    return $this->belongsToMany(Post::class, 'applied_programs', 'user_id', 'post_id')
-                ->withPivot('status', 'created_at');
-}
 }
