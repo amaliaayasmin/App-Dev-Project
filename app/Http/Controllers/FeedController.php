@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\SavedProgram;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -40,4 +41,6 @@ class FeedController extends Controller
         // Return the view with posts and filter values
         return view('feed.index', compact('posts', 'organizerId', 'date'));
     }
+
+
 }

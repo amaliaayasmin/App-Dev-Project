@@ -2,21 +2,37 @@
 
 @section('content')
 
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
 <style>
-    .header {
+    .bg {
+        background: #f5f5f5;
+    }
+
+    /* Header styling */
+    .upcoming-header {
         font-size: 30px;
         font-weight: bold;
-        color: #750000; /* Maroon */
+        color: #800000;
         margin: 20px;
     }
+
 </style>
 
 <body class="bg">
     <div class="container py-3">
+        <!-- Header -->
         <div class="text-left">
-            <h1 class="header">My Applications</h1>
+            <h1 class="upcoming-header">My Applications</h1>
         </div>
-    
+   
         @if ($appliedPrograms->isEmpty())
             <p>No applications yet</p>
         @else

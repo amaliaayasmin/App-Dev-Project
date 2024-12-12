@@ -70,6 +70,10 @@
         font-size: 18px;
     }
 
+    .btn-success i {
+        margin-right: 8px; /* Adjust the spacing as needed */
+    }
+
     #success-message,
     #wishlist-message {
         display: none;
@@ -120,7 +124,7 @@
     }
 
     .custom-bg {
-        background-color: #e5e8e8;
+        background-color: #d5d9da;
     }
 </style>
 
@@ -131,6 +135,7 @@
             <h1 class="upcoming-header">Upcoming Events</h1>
         </div>
 
+        <!-- Search Form -->
         <form action="{{ route('feed.search') }}" method="GET" class="d-flex mb-3">
             <input type="text" name="query" class="form-control" placeholder="Search events..." value="{{ request()->query('query') }}">
             <button type="submit" class="btn btn-primary ms-2">Search</button>
@@ -146,7 +151,7 @@
             </div>
         </form>
 
-        <!-- Check if there are posts or not -->
+        <!-- Content Section -->
         @if($posts->isEmpty())
             <p>No posts found matching your filter criteria.</p>
         @else
@@ -156,21 +161,39 @@
                     <div class="image">
                         <img class="br5" src="{{ asset('images/' . $post->image) }}" width="100%" height="100%">
                     </div>
+
+                    <!-- Bookmark button -->
                     <div class="px-2 content">
-                        <a href="javascript:void(0);" onclick="toggleBookmark(this)" class="float-end">
-                            <svg id="bookmark-icon" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#800000" stroke-width="2" viewBox="0 0 24 24" width="24" height="24" class="bookmark">
+                        <a href="javascript:void(0);" onclick="toggleBookmark(this, {{ $post->id }})" class="float-end">
+                            <svg id="bookmark-icon-{{ $post->id }}" xmlns="http://www.w3.org/2000/svg" fill='none' stroke="#800000" stroke-width="2" viewBox="0 0 24 24" width="24" height="24" class="bookmark">
                                 <path d="M6 3h12a2 2 0 0 1 2 2v16l-8-4-8 4V5a2 2 0 0 1 2-2z" />
                             </svg>
                         </a>
 
                         <script>
-                            function toggleBookmark(element) {
+                            function toggleBookmark(element, postId) {
                                 const svg = element.querySelector("svg");
-                                if (svg.getAttribute("fill") === "none") {
-                                    svg.setAttribute("fill", "#800000"); // Maroon fill
-                                } else {
-                                    svg.setAttribute("fill", "none");
-                                }
+                                const isBookmarked = svg.getAttribute("fill") === "#800000";
+
+                                 // Update bookmark UI
+                                svg.setAttribute("fill", isBookmarked ? "none" : "#800000");
+                               
+                                // Send AJAX request to the backend
+                                fetch(`/bookmark`, {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
+                                    },
+                                    body: JSON.stringify({ post_id: postId, bookmarked: !isBookmarked })
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    console.log(data.message);
+                                })
+                                .catch(error => {
+                                    console.error("Error:", error);
+                                });
                             }
                         </script>
                         

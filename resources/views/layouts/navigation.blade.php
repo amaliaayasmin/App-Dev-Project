@@ -43,6 +43,13 @@
                          {{ __('Applications') }}
                      </x-nav-link>
                      @endif
+
+                     <!-- Saved Programs(For Students Only) -->
+                     @if(auth()->guard('web')->check())
+                     <x-nav-link :href="route('savedprograms.index')" :active="request()->routeIs('savedprograms.index')">
+                         {{ __('Saved Programs') }}
+                     </x-nav-link>
+                     @endif
  
                 </div>
             </div>
@@ -139,6 +146,13 @@
              @if(auth()->guard('web')->check())
              <x-nav-link :href="route('applications.index')" :active="request()->routeIs('applications.index')">
                  {{ __('Applications') }}
+             </x-nav-link>
+             @endif
+
+             <!-- Saved Programs (For Students Only) -->
+             @if(auth()->guard('web')->check())
+             <x-nav-link :href="route('savedprograms.index')" :active="request()->routeIs('savedprograms.index')">
+                 {{ __('Saved Programs') }}
              </x-nav-link>
              @endif
 

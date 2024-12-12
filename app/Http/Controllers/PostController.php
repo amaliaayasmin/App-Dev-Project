@@ -178,4 +178,20 @@ public function accept($postId, $userId)
         return view('Organizer.applicants', compact('post', 'applicants'));
     }
 
+    public function unsave(Request $request)
+{
+    $postId = $request->post_id;
+    $user = auth()->user(); // Assuming user is authenticated
+    
+    $savedPost = $user->savedPrograms()->where('post_id', $postId)->first();
+    if ($savedPost) {
+        $user->savedPrograms()->detach($postId); // Detach the post from saved programs
+        return response()->json(['message' => 'Program unsaved successfully']);
+    }
+
+    return response()->json(['message' => 'Program not found in saved list'], 404);
+}
+
+
+
 }

@@ -11,6 +11,7 @@ use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ApplicantController;
+use App\Http\Controllers\SavedProgramController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -47,6 +48,7 @@ Route::get('/organizer/posts/{post}/applicants', [PostController::class, 'viewAp
 Route::get('/my-applications', [ApplicationController::class, 'index'])->name('applications.index');
 Route::get('/students/{id}', [StudentController::class, 'show'])->name('students.show');
 
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
     Route::get('/programs', [PostController::class, 'index'])->name('programs.index');
@@ -59,3 +61,8 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/applications', [ApplicationController::class, 'index'])->name('applications.index');
 Route::post('/post/{postId}/applicant/{applicantId}/accept', [PostController::class, 'accept'])->name('post.accept');
 Route::post('/post/{postId}/applicant/{applicantId}/reject', [PostController::class, 'reject'])->name('post.reject');
+
+Route::get('/savedprograms', [SavedProgramController::class, 'index'])->name('savedprograms.index');
+Route::post('/bookmark', [SavedProgramController::class, 'toggleBookmark'])->name('bookmark');
+Route::post('/unsave', [SavedProgramController::class, 'unsave'])->name('post.unsave');
+Route::post('/toggle-bookmark/{feed}', [SavedProgramController::class, 'toggle'])->name('toggle.bookmark');
