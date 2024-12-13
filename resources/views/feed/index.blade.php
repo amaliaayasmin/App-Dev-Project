@@ -144,9 +144,9 @@
         <!-- Filter Form -->
         <form action="{{ route('feed') }}" method="GET" class="mb-4">
             <div class="d-flex">
-                <input type="text" name="organization" class="form-control me-2" placeholder="Filter by Organization" value="{{ request('organization') }}">
+                <!-- Filter by Location -->
+                <input type="text" name="location" class="form-control me-2" placeholder="Filter by Location" value="{{ request('location') }}">
                 <input type="date" name="date" class="form-control me-2" placeholder="Filter by Date" value="{{ request('date') }}">
-                <!--  <input type="text" name="activity_type" class="form-control me-2" placeholder="Filter by Activity Type" value="{{ request('activity_type') }}"> -->
                 <button type="submit" class="btn btn-primary">Apply Filters</button>
             </div>
         </form>
