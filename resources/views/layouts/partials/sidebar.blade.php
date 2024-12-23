@@ -2,10 +2,19 @@
                     <div class="sb-sidenav-menu">
                         <p style="margin-bottom: 40px;">
                         <div class="nav">
-            
+
                             <a class="nav-link" href="{{ url('admin/dashboard') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
+                            </a>
+
+                            <a class="nav-link" href="{{ url('admin/addUser') }}">
+                                <div class="fas fa-columns"><i class="fas fa-tachometer-alt"></i></div>
+                               &nbsp; Add User
+                            </a>
+                            <a class="nav-link" href="{{ url('admin/addOrganizer') }}">
+                                <div class="fas fa-columns"><i class="fas fa-tachometer-alt"></i></div>
+                                &nbsp; Add Organizer
                             </a>
 
                             <div class="sb-sidenav-menu-heading">Interface</div>
@@ -71,5 +80,5 @@
                             </a>
                         </div>
                     </div>
-            
+
                 </nav>
