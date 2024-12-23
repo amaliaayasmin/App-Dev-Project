@@ -33,16 +33,27 @@ class ProfileController extends Controller
         if ($request->hasFile('profile_image')) {
             // Delete old profile image if it exists
             if ($user->profile_image) {
-                Storage::delete('public/' . $user->profile_image);
+                $oldImagePath = 'public/' . $user->profile_image;
+
+                // Delete the old file
+                Storage::delete($oldImagePath);
+
+                // Storage::delete('public/' . $user->profile_image);
             }
 
-            // Store the new profile image and get its path
-            $imagePath = $request->file('profile_image')->store('profile_images', 'public');
-            $user->profile_image = $imagePath;
+            $image = $request->file('profile_image');
+
+            // Generate the file name and store the file
+            $imageName = $image->getClientOriginalName(); // Get the original file name
+            $imagePath = $image->storeAs('profile_images', $imageName, 'public'); // Store the file in 'public/profile_images'
+
+            // Save the file name (relative path) in the database
+            $user->profile_image = 'profile_images/' . $imageName; // Save only the file name, relative to 'public/storage'
+            $user->save();
         }
 
         // Update other fields
-        $user->fill($request->validated()); // Handles validated fields like name and email
+        // $user->fill($request->validated());
         $user->university = $request->input('university');
         $user->faculty = $request->input('faculty');
         $user->languages = $request->input('languages');

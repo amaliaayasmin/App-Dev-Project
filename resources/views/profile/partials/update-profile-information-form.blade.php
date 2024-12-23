@@ -21,7 +21,7 @@
         <div>
             <x-input-label for="profile_image" :value="__('Profile Image')" />
             @if ($user->profile_image)
-                <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Profile Image" class="w-20 h-20 rounded-full object-cover mt-2">
+                <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Profile Image" class="w-20 h-20  object-cover mt-2">
             @endif
             <input id="profile_image" name="profile_image" type="file" class="mt-2 block w-full" />
             <x-input-error class="mt-2" :messages="$errors->get('profile_image')" />

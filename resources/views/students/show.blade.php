@@ -15,7 +15,8 @@
             <p><strong>Location:</strong> {{ $student->location }}</p>
             <p><strong>Experience:</strong> {{ $student->experience }}</p>
             <p><strong>Profile Image:</strong></p>
-            <img src="{{ asset('storage/' . $student->profile_image) }}" alt="Profile Image" class="rounded-circle" style="width: 150px; height: 150px;">
+            <img src="{{ asset('storage/' . $student->profile_image) }}" alt="Profile Image" class="rounded-circle" style="width: 120px; height: 150px;">
+
         </div>
     </div>
 </div>
