@@ -13,6 +13,7 @@ use App\Http\Controllers\OrganizerProfileController;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\SavedProgramController;
+use App\Http\Controllers\OverviewController;
 
 Route::get('/', function () {
     return view('welcome');
