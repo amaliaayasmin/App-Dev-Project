@@ -24,11 +24,12 @@ Route::prefix('organizer')->middleware('auth:organizer')->group(function () {
     Route::get('/dashboard', function () {
         return view('Organizer.dashboard');
     })->name('organizer.dashboard');
+    Route::get('organizer/profile', [OrganizerProfileController::class, 'edit'])->name('organizer.profile.edit');
+    Route::patch('organizer/profile', [OrganizerProfileController::class, 'update'])->name('organizer.profile.update'); // Ensure this route exists
 
+    Route::delete('/profile', [OrganizerProfileController::class, 'destroy'])->name('organizer.profile.destroy');
     Route::get('/profile', [OrganizerProfileController::class, 'edit'])->name('organizer.profile.edit');
     Route::patch('/profile', [OrganizerProfileController::class, 'update'])->name('organizer.profile.update');
-    Route::delete('/profile', [OrganizerProfileController::class, 'destroy'])->name('organizer.profile.destroy');
-
     Route::put('password', [PasswordController::class, 'update'])->name('organizer.password.update');
     Route::resource('post', PostController::class);
     Route::post('logout', [LoginController::class, 'destroy'])->name('organizer.logout');

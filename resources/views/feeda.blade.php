@@ -115,7 +115,7 @@
                 <p class="mb-1 text-cl fw400 fz90">Start Date: 2024-11-27</p>
                 <p class="mb-1 text-cl fw400 fz90">End Date: 2024-11-30</p>
                 <p class="mb-1 fw400 fz90">Start Time: 05:59:00</p>
-                <p class="mb-1 fw400 fz90">EEnd Time: 10:58:00</p>
+                <p class="mb-1 fw400 fz90">End Time: 10:58:00</p>
                 <p class="mb-1 fw400 fz90">Benefits: FOOD AND DRINKSa</p>
                 <p class="mb-1 fw400 fz90">Description: </p>
                 <div>

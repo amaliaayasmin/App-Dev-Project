@@ -4,7 +4,12 @@
 <div class="container">
     <div class="card mb-4">
         <div class="card-header">
-            <h2 class="mb-0">{{ $post->title }}</h2>
+            <h2 class="mb-0"><strong>{{ $post->title }} </strong> </h2> 
+                <p  class="mb-1 fw400 fz90">
+                    By : <a href="{{ route('organizer.show', $post->organizer->id) }}" style="text-decoration: underline; color: inherit;">
+                        {{$post->organizer->name}}
+                    </a>
+                </p>
         </div>
 
         <div class="card-body">

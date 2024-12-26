@@ -9,6 +9,7 @@ use App\Http\Controllers\ShowController;
 use App\Http\Controllers\ApplyController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\OrganizerProfileController;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\SavedProgramController;
@@ -35,6 +36,12 @@ Route::get('/admin/dashboard', [ShowController::class, 'showController'])->name(
 // Route::post('/admin/addUser', [ShowController::class, 'addUser'])->name('admin.add-user');
 Route::get('/organizer/dashboard', action: [ShowController::class, 'show'])->name('organizer.dashboard');
 
+//Profile Update 
+/*Route::middleware(['auth:organizer'])->group(function () {
+    Route::get('organizer/profile', [OrganizerProfileController::class, 'edit'])->name('organizer.profile.edit');
+    Route::patch('organizer/profile', [OrganizerProfileController::class, 'update'])->name('organizer.profile.update'); // Ensure this route exists
+    Route::get('/organizer/{id}', [OrganizerProfileController::class, 'show'])->name('organizer.show');
+});*/
 
 //Route::get('/feed/search', [FeedController::class, 'index'])->name('feed.search');
 Route::get('/feed/search', [PostController::class, 'search'])->name('feed.search');
@@ -48,7 +55,7 @@ Route::post('/apply/{post}', [ApplyController::class, 'store'])->name('apply.sto
 Route::get('/organizer/posts/{post}/applicants', [PostController::class, 'viewApplicants'])->name('post.applicants');
 Route::get('/my-applications', [ApplicationController::class, 'index'])->name('applications.index');
 Route::get('/students/{id}', [StudentController::class, 'show'])->name('students.show');
-
+Route::get('/organizer/{id}', [OrganizerProfileController::class, 'show'])->name('organizer.show');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
