@@ -27,6 +27,16 @@
             <x-input-error class="mt-2" :messages="$errors->get('profile_image')" />
         </div>
 
+        <!-- Header Image -->
+        <div>
+            <x-input-label for="header_image" :value="__('Header Image')" />
+            @if ($user->header_image)
+                <img src="{{ asset('storage/' . $user->header_image) }}" alt="Header Image" class="w-20 h-20  object-cover mt-2">
+            @endif
+            <input id="header_image" name="header_image" type="file" class="mt-2 block w-full" />
+            <x-input-error class="mt-2" :messages="$errors->get('header_image')" />
+        </div>
+
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />

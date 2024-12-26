@@ -28,7 +28,7 @@
             <x-input-error class="mt-2" :messages="$errors->get('profile_image')" />
         </div>
 
-        <!-- Profile Image -->
+        <!-- Header Image -->
         <div>
             <x-input-label for="header_image" :value="__('Header Image')" />
             @if ($user->header_image)

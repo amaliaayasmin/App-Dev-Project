@@ -4,12 +4,11 @@
         <div class="container mt-4">
             <div class="row">
                 <div class="col-md-12">
+                    <div class="d-flex justify-content-between mb-4">
+                        <h4 class="font-weight-bold" style="font-size: 30px; color: #750000; margin-left: 30px;"><b>Create Post</b></h4>
+                        <a href="{{ url('post') }}" class="btn" style="background-color: #750000; color: white;">Back</a>
+                    </div>
                     <div class="card">
-                        <div class="card-header">
-                            <h4>Create Post 
-                                <a href="{{url('post')}}" class = "btn btn-danger float-end">Back</a>
-                            </h4>
-                        </div>
                         <div class="card-body">
                                 <!-- Form to create a new post -->
                                 <form action="{{url('post')}}" method="POST" enctype="multipart/form-data">
@@ -94,15 +93,12 @@
 
                                     <!-- Submit Button -->
                                     <div class="flex items-center justify-end mt-4">
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="btn" style="background-color: #750000; color: white;">
                                             {{ __('Create Post') }}
                                         </button>
                                     </div>
-
                                 </form>
-
                             </div>
-                        </div>
                         </div>
                     </div>
                 </div>

@@ -201,9 +201,12 @@
                         <a href="{{ route('post.show', $post->id) }}" style="text-decoration: none; color: inherit;">
                             <p class="mb-1 fw600 fz120">{{ $post->title }}</p>
                         </a>
-                        <a href="{{ route('organizer.show', $post->organizer->id) }}" style="text-decoration: underline; color: inherit;">
-                            <p class="mb-1 fw400 fz90">By: {{ $post->organizer->name }}</p>
-                        </a>
+                        <p class="mb-1 fw400 fz90">
+                            By: <a href="{{ route('organizer.show', $post->organizer->id) }}" style="text-decoration: underline; color: inherit;">
+                                {{ $post->organizer->name }}
+                            </a>
+                        </p>
+                                              
                         <p class="mb-1 fw400 fz90">Location: {{ $post->location }}</p>
                         <p class="mb-1 text-cl fw400 fz90">Start Date: {{ $post->start_date }}</p>
                         <p class="mb-1 text-cl fw400 fz90">End Date: {{ $post->end_date }}</p>

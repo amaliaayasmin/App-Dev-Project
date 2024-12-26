@@ -52,6 +52,21 @@ class ProfileController extends Controller
             $user->save();
         }
 
+        if ($request->hasFile('header_image')) {
+            // Delete old header image if it exists
+            if ($user->header_image) {
+                $oldImagePath = 'public/' . $user->header_image;
+                Storage::delete($oldImagePath);
+            }
+    
+            $image = $request->file('header_image');
+            $imageName = time() . '_' . $image->getClientOriginalName(); // Use a unique name
+            $imagePath = $image->storeAs('header_images', $imageName, 'public'); // Store the file
+    
+            // Save the file name (relative path) in the database
+            $user->header_image = 'header_images/' . $imageName; // Save only the file name
+        }
+
         // Update other fields
         // $user->fill($request->validated());
         $user->university = $request->input('university');
