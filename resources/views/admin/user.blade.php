@@ -5,10 +5,8 @@
 @section('content')
     <h1>Admin Dashboard</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item active">Add User</li>
+        <li class="breadcrumb-item active">Add Student</li>
     </ol>
-
-
 
     <form action="{{ route('add.user') }}" method="POST">
         @csrf

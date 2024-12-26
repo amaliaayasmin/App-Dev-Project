@@ -8,38 +8,15 @@
                                 Dashboard
                             </a>
 
-                            <a class="nav-link" href="{{ url('admin/addUser') }}">
-                                <div class="fas fa-columns"><i class="fas fa-tachometer-alt"></i></div>
-                               &nbsp; Add User
-                            </a>
-                            <a class="nav-link" href="{{ url('admin/addOrganizer') }}">
-                                <div class="fas fa-columns"><i class="fas fa-tachometer-alt"></i></div>
-                                &nbsp; Add Organizer
-                            </a>
-
-                            <div class="sb-sidenav-menu-heading">Interface</div>
-
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseProducts" aria-expanded="false" aria-controls="collapseProducts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Programs
+                                User
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseProducts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="{{ url('admin/programs/create') }}">Add Program</a>
-                                    <a class="nav-link" href="{{ url('admin/programs') }}">View Program</a>
-                                </nav>
-                            </div>
-
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePosts" aria-expanded="false" aria-controls="collapsePosts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Organizer
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapsePosts" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="{{ url('admin/organizer/create') }}">Add Organizer</a>
-                                    <a class="nav-link" href="{{ url('admin/organizer') }}">View Organizer</a>
+                                    <a class="nav-link" href="{{ url('admin/addUser') }}">Add Student</a>
+                                    <a class="nav-link" href="{{ url('admin/addOrganizer') }}">Add Organizer</a>
                                 </nav>
                             </div>
 
@@ -77,6 +54,10 @@
                             <a class="nav-link" href="tables.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Tables
+                            </a>
+                            <a class="nav-link" href="tables.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Activity Log
                             </a>
                         </div>
                     </div>

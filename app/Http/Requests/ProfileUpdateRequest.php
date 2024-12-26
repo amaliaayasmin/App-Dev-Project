@@ -27,9 +27,11 @@ class ProfileUpdateRequest extends FormRequest
             ],
             // Validation for profile_image
             'profile_image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'header_image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             
             // Validation for new fields
             'university' => ['nullable', 'string', 'max:255'],
+            'years_established' => ['nullable', 'string', 'max:255'],
             'faculty' => ['nullable', 'string', 'max:255'],
             'languages' => ['nullable', 'string', 'max:255'],
             'location' => ['nullable', 'string', 'max:255'],

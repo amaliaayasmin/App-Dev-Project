@@ -16,7 +16,7 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>#</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,7 +46,7 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>#</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>

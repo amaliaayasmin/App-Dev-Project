@@ -13,38 +13,39 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('organizer.profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('organizer.profile.update') }}" enctype="multipart/form-data" class="mt-6 space-y-6">
         @csrf
         @method('patch')
 
         
-         <!-- Header Image -->
-         <div>
-            <x-input-label for="header_image" :value="__('Header Image')" />
-            @if ($user->header_image)
-                <img src="{{ asset('storage/' . $user->header_image) }}" alt="Header Image" class="w-20 h-20 object-cover mt-2">
+         <!-- Profile Image -->
+        <div>
+            <x-input-label for="profile_image" :value="__('Profile Image')" />
+            @if ($user->profile_image)
+                <img src="{{ asset('storage/' . $user->profile_image) }}" alt="Profile Image" class="w-20 h-20  object-cover mt-2">
             @endif
-            <input id="header_image" name="header_image" type="file" class="mt-2 block w-full" />
-            <x-input-error class="mt-2" :messages="$errors->get('header_image')" />
+            <input id="profile_image" name="profile_image" type="file" class="mt-2 block w-full" />
+            <x-input-error class="mt-2" :messages="$errors->get('profile_image')" />
         </div>
 
-
-        <!-- Header Image -->
+        <!-- Profile Image -->
         <div>
             <x-input-label for="header_image" :value="__('Header Image')" />
             @if ($user->header_image)
-                <img src="{{ asset('public' . $user->header_image) }}" alt="Header Image" class="w-20 h-20  object-cover mt-2">
+                <img src="{{ asset('storage/' . $user->header_image) }}" alt="Header Image" class="w-20 h-20  object-cover mt-2">
             @endif
             <input id="header_image" name="header_image" type="file" class="mt-2 block w-full" />
             <x-input-error class="mt-2" :messages="$errors->get('header_image')" />
         </div>
 
+        <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
+        <!-- Email -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
@@ -69,6 +70,7 @@
             @endif
         </div>
 
+        <!--Years Established -->
         <div>
             <x-input-label for="year_established" :value="__('Year Established')" />
             <x-text-input id="year_established" name="year_established" type="text" class="mt-1 block w-full" :value="old('year_established', $user->year_established)" placeholder="e.g., 2003" />
@@ -82,7 +84,7 @@
             <x-input-error class="mt-2" :messages="$errors->get('description')" />
         </div>
 
-
+        <!-- Save Button and Flash Message -->
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 

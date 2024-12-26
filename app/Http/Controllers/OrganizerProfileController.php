@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage; // Import Storage facade
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Log; 
 
 class OrganizerProfileController extends Controller
 {
@@ -72,7 +73,7 @@ class OrganizerProfileController extends Controller
         }
     
         // Log the user object before saving
-        \Log::info('User  before save:', $user->toArray());
+        Log::info('User  before save:', $user->toArray());
     
         // Save the updated user information
         if ($user->save()) {

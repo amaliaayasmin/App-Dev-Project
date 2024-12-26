@@ -1,34 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-4">
+<div class="container mt-4" style="font-family: 'Poppins', sans-serif;">
     <!-- Header Section -->
     <div class="cover-photo" style="position: relative; height: 300px; background: url('{{ $organizer->header_image ? asset('storage/' . $organizer->header_image) : asset('default-cover.jpg') }}') no-repeat center center / cover;">
         <!-- Profile Picture -->
-        <div class="profile-picture" style="position: absolute; bottom: -60px; left: 20px;">
+        <div class="profile-picture" style="position: absolute; bottom: -75px; left: 20px;">
             <img 
                 src="{{ $organizer->profile_image ? asset('storage/' . $organizer->profile_image) : asset('default-profile.png') }}" 
                 alt="Profile Image" 
-                class="rounded-circle border border-white" 
-                style="width: 120px; height: 120px; object-fit: cover;"
+                class="rounded-circle border border-white shadow" 
+                style="width: 150px; height: 150px; object-fit: cover;"
             >
         </div>
     </div>
 
     <!-- Organizer Info Section -->
-    <div class="card mt-5">
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <div>
-                <h1><strong>{{ $organizer->name }}</strong></h> 
-                <p class="text-muted">{{ $organizer->year_established ? 'Established in ' . $organizer->year_established : 'Year established not provided' }}</p>
-            </div>
+    <div class="d-flex align-items-center mt-5" style="margin-left: 180px;"> <!-- Adjust margin-top value here -->
+        <!-- Organizer Name and Year Beside Profile Picture -->
+        <div style="margin-top: -50px;">
+            <h1 class="fw-bold" style="font-size: 1.8rem; margin-top: 0.3rem;">{{ $organizer->name }}</h1>
+            <p class="text-muted" style="margin: 0; font-size: 0.9rem;">
+                {{ $organizer->year_established ? 'Established in ' . $organizer->year_established : 'Year established not provided' }}
+            </p>
         </div>
+    </div>
+    
+    <!-- Description Section -->
+    <div class="card mt-4">
         <div class="card-body">
-            @if ($organizer->description)
-                <p><strong>Description:</strong> {{ $organizer->description }}</p>
-            @else
-                <p class="text-muted">No description available.</p>
-            @endif
+            <h5 class="fw-bold">Description:</h5>
+            <p>
+                {{ $organizer->description ? $organizer->description : 'No description available.' }}
+            </p>
         </div>
     </div>
 </div>

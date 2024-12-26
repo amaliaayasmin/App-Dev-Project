@@ -8,8 +8,6 @@
         <li class="breadcrumb-item active">Add Organizer</li>
     </ol>
 
-
-
     <form action="{{ route('add.organizer') }}" method="POST">
         @csrf
         <div class="mb-3">
