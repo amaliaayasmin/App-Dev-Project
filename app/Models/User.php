@@ -56,6 +56,11 @@ class User extends Authenticatable
         ];
     }
 
+    public function savedPrograms()
+    {
+        return $this->belongsToMany(Post::class, 'saved_programs', 'user_id', 'post_id');
+    }
+
     public function appliedPrograms()
     { 
         return $this->belongsToMany(Post::class, 'applied_programs', 'user_id', 'post_id')

@@ -147,7 +147,7 @@
         }
 
         .fc .fc-event:hover {
-            background-color: white;
+            background-color: #e57373;
         }
 
         .floating-btn i {
@@ -305,25 +305,46 @@
 
         <!-- Box Container Section -->
         <div class="box-container py-4">
-    <!-- Box 1 -->
-    <div class="box">
-        Total number of programs in Feed page: <span id="feed-count"></span>
+     <!-- Box 1 -->
+     <div class="box">
+        Total number of saved programs: {{ $savedCount }}
     </div>
 
     <!-- Box 2 -->
     <div class="box">
-        Total number of saved programs: <span id="saved-count"></span>
+        Total number of applied programs: {{ $joinedCount }}
     </div>
 
     <!-- Box 3 -->
     <div class="box">
-        Total number of joined programs (applied): <span id="joined-count"></span>
+        Total number of accepted programs: {{ $acceptedCount }}
     </div>
 </div>
 
         <!-- Calendar Section -->
         <div id="calendar"></div>
+    </div>
 
+    <script>
+        var acceptedPrograms = @json($acceptedPrograms);  
+    
+        var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
+            initialView: 'dayGridMonth',
+            events: acceptedPrograms.map(function(program) {
+                return {
+                    title: program.title,
+                    start: program.start_date,
+                    end: program.end_date,
+                    description: 'This is an accepted program.',
+                };
+            }),
+            
+        });
+    
+        calendar.render();
+    </script>
+
+    
         <!-- Floating Button -->
 <div id="rate-us-btn" class="floating-btn">
     <i class="fas fa-star"></i> Rate Us
@@ -380,47 +401,6 @@
     });
 });
 
-    </script>
-
-    <script>
-        // Example data, you can dynamically fetch these from your backend
-        const feedCount = 25; // Placeholder value for feed count
-        const savedCount = 10; // Placeholder value for saved programs
-        const joinedCount = 5; // Placeholder value for joined programs
-
-        // Set the values dynamically
-        document.getElementById('feed-count').textContent = feedCount;
-        document.getElementById('saved-count').textContent = savedCount;
-        document.getElementById('joined-count').textContent = joinedCount;
-        
-        // Initialize the FullCalendar
-        var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
-            initialView: 'dayGridMonth',
-            events: [
-                {
-                    title: 'Sample Event 1',
-                    start: '2024-12-25',
-                    description: 'This is a sample event for demonstration purposes.',
-                },
-                {
-                    title: 'Sample Event 2',
-                    start: '2024-12-28',
-                    description: 'Another sample event.',
-                }
-            ],
-            eventClick: function(info) {
-                alert('Event: ' + info.event.title + '\nDate: ' + info.event.start.toISOString());
-            }
-        });
-
-        // Render the calendar
-        calendar.render();
-        
-        // Explicitly initialize the carousel
-        var carousel = new bootstrap.Carousel(document.getElementById('carouselExample'), {
-            interval: 5000,
-            wrap: true
-        });
     </script>
 
 </body>
