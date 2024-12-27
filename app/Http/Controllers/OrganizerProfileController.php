@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage; // Import Storage facade
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Log; 
+use App\Models\Post;
+
 
 class OrganizerProfileController extends Controller
 {
@@ -64,6 +66,8 @@ class OrganizerProfileController extends Controller
         }
     
         // Update other fields
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
         $user->year_established = $request->input('year_established');
         $user->description = $request->input('description');
     
@@ -81,6 +85,38 @@ class OrganizerProfileController extends Controller
         } else {
             return Redirect::route('organizer.profile.edit')->with('error', 'Failed to update profile.');
         }
+    }
+
+    public function dashboard(): View
+    {
+        // Fetch the logged-in organizer
+        $user = Auth::user();
+
+        // Fetch all posts created by the organizer
+        $posts = Post::where('organizer_id', $user->id)->get(); // Assuming you have an organizer_id field in your posts
+
+        // Count the number of posts
+        $postCount = $posts->count();
+
+        // Get today's date
+        $today = now()->toDateString();
+
+        // Count past and upcoming posts
+        $pastCount = $posts->filter(function ($post) use ($today) {
+            return $post->end_date < $today; // Count posts that have ended
+        })->count();
+
+        $upcomingCount = $posts->filter(function ($post) use ($today) {
+            return $post->start_date >= $today; // Count posts that are upcoming
+        })->count();
+
+        return view('organizer.dashboard', [
+            'user' => $user,
+            'posts' => $posts,
+            'postCount' => $postCount,
+            'pastCount' => $pastCount,
+            'upcomingCount' => $upcomingCount,
+        ]);
     }
 
     public function show($id)

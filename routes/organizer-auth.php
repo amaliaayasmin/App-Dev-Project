@@ -21,9 +21,10 @@ Route::prefix('organizer')->middleware('guest:organizer')->group(function () {
 
 Route::prefix('organizer')->middleware('auth:organizer')->group(function () {
 
-    Route::get('/dashboard', function () {
-        return view('Organizer.dashboard');
-    })->name('organizer.dashboard');
+
+    Route::get('/dashboard', [OrganizerProfileController::class, 'dashboard'])->name('organizer.dashboard');
+
+    
     Route::get('organizer/profile', [OrganizerProfileController::class, 'edit'])->name('organizer.profile.edit');
     Route::patch('organizer/profile', [OrganizerProfileController::class, 'update'])->name('organizer.profile.update'); // Ensure this route exists
 

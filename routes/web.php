@@ -35,7 +35,7 @@ Route::resource('post', PostController::class);
 
 Route::get('/admin/dashboard', [ShowController::class, 'showController'])->name('admin.dashboard');
 // Route::post('/admin/addUser', [ShowController::class, 'addUser'])->name('admin.add-user');
-Route::get('/organizer/dashboard', action: [ShowController::class, 'show'])->name('organizer.dashboard');
+//Route::get('/organizer/dashboard', action: [ShowController::class, 'show'])->name('organizer.dashboard');
 
 //Profile Update 
 /*Route::middleware(['auth:organizer'])->group(function () {
