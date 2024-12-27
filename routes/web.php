@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\SavedProgramController;
 use App\Http\Controllers\OverviewController;
+use App\Http\Controllers\AboutController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -75,3 +77,5 @@ Route::get('/savedprograms', [SavedProgramController::class, 'index'])->name('sa
 Route::post('/bookmark', [SavedProgramController::class, 'toggleBookmark'])->name('bookmark');
 Route::post('/unsave', [SavedProgramController::class, 'unsave'])->name('post.unsave');
 Route::post('/toggle-bookmark/{feed}', [SavedProgramController::class, 'toggle'])->name('toggle.bookmark');
+
+Route::get('/about', [AboutController::class, 'index'])->name('about.index');

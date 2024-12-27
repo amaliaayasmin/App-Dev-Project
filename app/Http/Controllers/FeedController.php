@@ -30,6 +30,13 @@ class FeedController extends Controller
             $query->whereDate('start_date', $date);
         }
 
+        // // Check if the 'shuffle' parameter is set
+        //  $shuffle = $request->has('shuffle') ? true : false;
+
+        // // Fetch posts with optional shuffling
+        // $posts = $shuffle ? Post::inRandomOrder()->get() : Post::all();
+
+
         // Fetch the posts with the applied filters
         $posts = $query->paginate(10); // Adjust pagination as needed
 

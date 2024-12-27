@@ -17,11 +17,15 @@
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.js"></script>
     
+     <!-- Google Fonts -->
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
     <style>
         body {
-            font-family: "Times New Roman", serif;
-            background-color: #ffffff;
+            font-family: "Poppins", sans-serif;
+            background: url('images/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
         }
 
         .carousel-inner img {
@@ -60,19 +64,23 @@
             font-weight: bold;
             color: #800000;
             margin: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
         }
 
         .box {
-    background: rgb(203, 144, 144); /* Warm peach to light yellow gradient */
-    color:rgb(0, 0, 0); /* Dark gray text */
-    padding: 20px;
-    border-radius: 15px;
+    background: rgb(159, 100, 107); /* Warm peach to light yellow gradient */
+    color: #ffffff;
+    padding: 20px 30px; /* Increased padding */
+    border-radius: 10px;
     text-align: center;
-    font-size: 18px;
+    font-size: 24px; /* Increased font size */
     font-weight: bold;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Slightly larger shadow */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 30px; /* Increased margin for better spacing */
+    text-shadow: 2px 2px 4px #000000;
 }
+
 
 .box:hover {
     transform: translateY(-5px);
@@ -281,7 +289,7 @@
 </head>
 
 <body class="bg">
-    <div class="container py-3">
+    <div class="container mt-4" style="font-family: 'Poppins', sans-serif;">
         <!-- Header -->
         <div class="text-left">
             <h1 class="upcoming-header">{{ __('Welcome, ' . Auth::user()->name . '!') }}</h1>

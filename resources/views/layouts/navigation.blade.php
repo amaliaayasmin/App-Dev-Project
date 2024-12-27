@@ -88,6 +88,12 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
+                        <!-- About Us -->
+                        <x-dropdown-link :href="route('about.index')">
+                            {{ __('About Us') }}
+                        </x-dropdown-link>
+
+
                         <!-- Logout -->
                         <form method="POST"
                             action="{{ auth()->guard('admin')->check() 
@@ -191,6 +197,11 @@
                                                 ? route('organizer.profile.edit') 
                                                 : route('profile.edit'))">
                     {{ __('Profile') }}
+                </x-responsive-nav-link>
+
+                <!-- About Us -->
+                <x-responsive-nav-link  :href="route('about.index')">
+                    {{ __('About Us') }}
                 </x-responsive-nav-link>
 
                 <!-- Logout -->
