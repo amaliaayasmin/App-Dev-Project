@@ -89,7 +89,7 @@ class OrganizerProfileController extends Controller
         $organizer = Organizer::findOrFail($id);
 
         // Return the view with the organizer's details
-        return view('organizer.show', compact('organizer'));
+        return view('Organizer.show', compact('organizer'));
     }
     
     /**
