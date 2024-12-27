@@ -15,6 +15,7 @@
     <div class="text-left">
         <h1 class="header">Applicants for {{ $post->title }}</h1>
     </div>
+    
     @if ($applicants->isEmpty())
         <p>No applicants yet for this post.</p>
     @else
@@ -27,6 +28,7 @@
                     <th class="border px-4 py-2 bg-gray-100">Program Title</th>
                     <th class="border px-4 py-2 bg-gray-100">Status</th>
                     <th class="border px-4 py-2 bg-gray-100">Actions</th>
+                    <th class="border px-4 py-2 bg-gray-100">Message History</th>
                 </tr>
             </thead>
             <tbody>
@@ -58,7 +60,26 @@
                             <form action="{{ route('post.reject', [$post->id, $applicant->id]) }}" method="POST" style="display:inline;">
                                 @csrf
                                 <button type="submit" class="btn btn-danger text-white px-4 py-2 rounded">Reject</button>
+                            </form> 
+                        </td>
+                        <td class="border px-4 py-2">
+                            <form action="{{ route('post.sendMessage', ['postId' => $post->id, 'applicantId' => $applicant->id]) }}" method="POST">
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="message-{{ $applicant->id }}" class="form-label">Custom Message</label>
+                                    <textarea class="form-control" id="message-{{ $applicant->id }}" name="message" rows="3" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-success">Send Message</button>
                             </form>
+                            <ul class="mt-2">
+                                @if ($applicant->messages && $applicant->messages->isNotEmpty())
+                                    @foreach ($applicant->messages as $message)
+                                        <li>{{ $message->message }} <small class ="text-muted">({{ $message->created_at->format('Y-m-d H:i') }})</small></li>
+                                    @endforeach
+                                @else
+                                    <li>No messages sent.</li>
+                                @endif
+                            </ul>
                         </td>
                     </tr>
                 @endforeach

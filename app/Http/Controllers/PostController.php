@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Message;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
+use App\Notifications\MessageSent; // Import the  notification
 
 class PostController extends Controller
 {
@@ -151,16 +154,40 @@ class PostController extends Controller
 }
 
 
-public function accept($postId, $userId)
-    {
-        // Update the status to 'accepted' in the applied_programs table
-        DB::table('applied_programs')
-            ->where('user_id', $userId)
-            ->where('post_id', $postId)
-            ->update(['status' => 'accepted']);
+public function accept(Request $request, $postId, $applicantId)
+{
+    // Update the status to 'accepted' in the applied_programs table
+    $updated = DB::table('applied_programs')
+        ->where('user_id', $applicantId)
+        ->where('post_id', $postId)
+        ->update(['status' => 'accepted']);
 
-        return redirect()->back()->with('success', 'Applicant accepted successfully.');
-    }
+       
+        return redirect()->back()->with('success', 'Applicant accepted successfully and notified.');
+
+}
+
+public function sendMessage(Request $request, $postId, $applicantId)
+{
+    // Validate the incoming request
+    $request->validate([
+        'message' => 'required|string|max:255',
+    ]);
+
+    // Create a new message
+    Message::create([
+        'user_id' => $applicantId, // Assuming this is the applicant's user ID
+        'post_id' => $postId,
+        'message' => $request->message,
+    ]);
+
+    // Send a notification to the applicant
+    $student = User::find($applicantId);
+    $organizer = auth()->user(); // Get the currently authenticated user
+    $student->notify(new MessageSent($request->message, $organizer->name)); // Pass the organizer's name
+
+    return redirect()->back()->with('success', 'Message sent successfully and applicant notified.');
+}
 
     public function reject($postId, $userId)
     {

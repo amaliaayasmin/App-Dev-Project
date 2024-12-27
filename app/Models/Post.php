@@ -40,5 +40,8 @@ class Post extends Model
                    ->withPivot('status')
                    ->withTimestamps();
    }
-
+   public function messages()
+    {
+        return $this->hasMany(Message::class); // Assuming each post can have multiple messages
+    }
 }

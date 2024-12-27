@@ -30,6 +30,8 @@
                     </x-nav-link>
                     @endif
 
+
+
                     <!-- Post (For Organizers Only) -->
                     @if(auth()->guard('organizer')->check())
                     <x-nav-link :href="route('post.index')" :active="request()->routeIs('post.*')">
@@ -44,12 +46,20 @@
                      </x-nav-link>
                      @endif
 
+
                      <!-- Saved Programs(For Students Only) -->
                      @if(auth()->guard('web')->check())
                      <x-nav-link :href="route('savedprograms.index')" :active="request()->routeIs('savedprograms.index')">
                          {{ __('Saved Programs') }}
                      </x-nav-link>
                      @endif
+                     
+                     @if(auth()->guard('web')->check())
+                     <x-nav-link :href="route('notifications.index')" :active="request()->routeIs('notifications.index')">
+                        {{ __('Notifications') }}
+                    </x-nav-link>
+                     @endif
+
  
                 </div>
             </div>

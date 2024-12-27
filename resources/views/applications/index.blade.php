@@ -43,6 +43,7 @@
                         <th class="border px-4 py-2">Program Title</th>
                         <th class="border px-4 py-2">Applied At</th>
                         <th class="border px-4 py-2">Status</th>
+                        <th class="border px-4 py-2">Messages</th
                     </tr>
                 </thead>
                 <tbody>
@@ -59,6 +60,21 @@
                                     <span class="badge bg-warning">Pending</span>
                                 @endif
                             </td>
+                            <th class="border px-4 py-2">
+                                                        
+                                @if ($program->messages->isNotEmpty())
+                                    <ul>
+                                        @foreach ($program->messages as $message)
+                                            <li>
+                                                <strong>{{ $message->message }}</strong> <!-- Access the message content -->
+                                                <small>({{ $message->created_at->diffForHumans() }})</small>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                @else
+                                    <p>No messages yet</p>
+                                @endif
+</td>
                         </tr>
                     @endforeach
                 </tbody>

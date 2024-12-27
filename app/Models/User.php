@@ -67,4 +67,8 @@ class User extends Authenticatable
         ->withPivot('status', 'created_at')
         ->withTimestamps();  
     }
+    public function messages()
+    {
+        return $this->hasMany(Message::class, 'user_id'); // Assuming 'user_id' is the foreign key in the messages table
+    }
 }

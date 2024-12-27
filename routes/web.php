@@ -14,8 +14,12 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\SavedProgramController;
 use App\Http\Controllers\OverviewController;
+<<<<<<< Updated upstream
 use App\Http\Controllers\AboutController;
 
+=======
+use App\Http\Controllers\NotificationController;
+>>>>>>> Stashed changes
 
 Route::get('/', function () {
     return view('welcome');
@@ -63,6 +67,7 @@ Route::get('/organizer/{id}', [OrganizerProfileController::class, 'show'])->name
 Route::middleware(['auth'])->group(function () {
     Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
     Route::get('/programs', [PostController::class, 'index'])->name('programs.index');
+    Route::post('/post/{postId}/applicant/{applicantId}/accept', [PostController::class, 'accept'])->name('post.accept');
 
 });
 
@@ -78,4 +83,12 @@ Route::post('/bookmark', [SavedProgramController::class, 'toggleBookmark'])->nam
 Route::post('/unsave', [SavedProgramController::class, 'unsave'])->name('post.unsave');
 Route::post('/toggle-bookmark/{feed}', [SavedProgramController::class, 'toggle'])->name('toggle.bookmark');
 
+<<<<<<< Updated upstream
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
+=======
+Route::get('/notifications', [NotificationController::class, 'index'])->middleware('auth')->name('notifications.index');
+
+
+//Route::post('/post/{postId}/applicant/{applicantId}/accept', [PostController::class, 'accept'])->name('post.accept');
+//Route::post('/post/{postId}/applicant/{applicantId}/send-message', [PostController::class, 'sendMessage'])->name('post.sendMessage');
+>>>>>>> Stashed changes

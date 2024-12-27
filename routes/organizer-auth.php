@@ -7,6 +7,7 @@ use App\Http\Controllers\OrganizerProfileController;
 use Illuminate\Support\Facades\Route;use App\Http\Controllers\PostController; 
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\ApplyController;
+use App\Http\Controllers\NotificationController;
 
 
 Route::prefix('organizer')->middleware('guest:organizer')->group(function () {
@@ -38,4 +39,7 @@ Route::prefix('organizer')->middleware('auth:organizer')->group(function () {
     Route::post('/apply/{post}', [ApplyController::class, 'store'])->name('apply.store');
     Route::get('/organizer/applicants', [PostController::class, 'viewApplicants'])->name('post.applicants');
     Route::get('/my-applications', [ApplicationController::class, 'index'])->name('applications.index');
+
+    Route::post('/post/{postId}/applicant/{applicantId}/accept', [PostController::class, 'accept'])->name('post.accept');
+    Route::post('/post/{postId}/applicant/{applicantId}/send-message', [PostController::class, 'sendMessage'])->name('post.sendMessage');
 });
