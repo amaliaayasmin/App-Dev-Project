@@ -110,7 +110,7 @@ class OrganizerProfileController extends Controller
             return $post->start_date >= $today; // Count posts that are upcoming
         })->count();
 
-        return view('organizer.dashboard', [
+        return view('Organizer.dashboard', [
             'user' => $user,
             'posts' => $posts,
             'postCount' => $postCount,
