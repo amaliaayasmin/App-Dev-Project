@@ -29,16 +29,11 @@ class FeedController extends Controller
         if ($date) {
             $query->whereDate('start_date', $date);
         }
-
-        // // Check if the 'shuffle' parameter is set
-        //  $shuffle = $request->has('shuffle') ? true : false;
-
-        // // Fetch posts with optional shuffling
-        // $posts = $shuffle ? Post::inRandomOrder()->get() : Post::all();
-
-
         // Fetch the posts with the applied filters
         $posts = $query->paginate(10); // Adjust pagination as needed
+
+        // Shuffle the posts randomly
+        $posts = $query->get()->shuffle();
 
         // Return the view with posts and filter values
         return view('feed.index', compact('posts', 'location', 'date'));
