@@ -8,127 +8,98 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-cP3e1B8zuKB1pvSX6KPZ9HIe6ABR4k3gMlQe6BKOwCjEOLWxlAuc3SAvT0fInG2A" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- FullCalendar CSS and JS -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.js"></script>
+    
+     <!-- Google Fonts -->
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
     <style>
         body {
-            font-family: "Times New Roman", serif;
-            background-color: #ffffff;
+            font-family: "Poppins", sans-serif;
+            background: url('images/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+        }
+
+        .carousel-inner img {
+            max-height: 400px;
+            object-fit: cover;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            transform: translate(0, -50%);
+            color: white;
+            background-color: rgba(128, 0, 0, 0.7); /* Maroon with transparency */
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left; /* Align the text to the left */
+        }
+
+        .carousel-caption h1 {
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .carousel-caption h3 {
+            font-size: 18px;
         }
 
         .bg {
             background: #f5f5f5;
         }
 
+        /* Header styling */
         .upcoming-header {
-            font-size: 37px;
+            font-size: 37px; /* Increased size for better visibility */
             font-weight: bold;
             color: #800000;
             margin: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
         }
 
         .box {
-            background: rgba(252, 252, 252, 0.66);
-            color: rgb(0, 0, 0);
-            padding: 10px;
-            border-radius: 10px;
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: rgb(159, 100, 107); /* Warm peach to light yellow gradient */
+    color: #ffffff;
+    padding: 20px 30px; /* Increased padding */
+    border-radius: 10px;
+    text-align: center;
+    font-size: 24px; /* Increased font size */
+    font-weight: bold;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Slightly larger shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 30px; /* Increased margin for better spacing */
+    text-shadow: 2px 2px 4px #000000;
+}
+
+
+.box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+        .box-container {
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
         }
 
-        /* Floating Button */
-        .floating-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #ff9966, #ff5e62);
-            color: white;
-            border-radius: 50px;
-            padding: 10px 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            font-size: 16px;
+        .box-container .box {
+            flex: 1;
+            box-sizing: border-box;
         }
 
-        .floating-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Modal Content Styling */
-        .rate-us-modal {
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .rate-us-modal .modal-header {
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            color: white;
-            border-bottom: none;
-            padding: 20px;
-        }
-
-        .rate-us-modal .modal-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 20px;
-        }
-
-        .rate-us-modal .modal-body {
-            font-family: 'Roboto', sans-serif;
-            font-size: 16px;
-            color: #555;
-        }
-
-        .rate-us-modal .emoji-btn {
-            font-size: 30px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.2s ease, filter 0.2s ease;
-        }
-
-        .rate-us-modal .emoji-btn:hover {
-            transform: scale(1.3);
-            filter: brightness(1.2);
-        }
-
-        .rate-us-modal .form-control {
-            border-radius: 10px;
-            border: 1px solid #ddd;
-            padding: 10px;
-            transition: box-shadow 0.2s ease;
-        }
-
-        .rate-us-modal .form-control:focus {
-            box-shadow: 0 0 10px rgba(50, 150, 250, 0.4);
-        }
-
-        .rate-us-modal .btn {
-            border-radius: 25px;
-            padding: 8px 20px;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .rate-us-modal .btn-primary {
-            background-color: #34d399;
-            color: white;
-            border: none;
-        }
-
-        .rate-us-modal .btn-primary:hover {
-            background-color: #059669;
-            box-shadow: 0 5px 15px rgba(5, 150, 105, 0.4);
-        }
-  
         /* Calendar Section */
         #calendar {
             margin-top: 30px;
@@ -138,115 +109,229 @@
             background-color: #f5f5f5;
         }
 
-        .event-count-container {
-            //background-color:rgb(255, 255, 255); /* Light background color */
-            padding: 15px;
-            border-radius: 10px;
-            display: flex;
-            justify-content: space-between; /* Space items evenly */
-            align-items: center; /* Center items vertically */
-            margin-top: 0px; /* Add some margin on top */
+        /* Custom FullCalendar Theme - Maroon and Gray */
+        .fc {
+            font-family: "Times New Roman", serif;
         }
 
-        .description-card {
-            margin-top: 20px;
-            padding: 20px;
-            border: 1px solid #ddd;
+        .fc .fc-toolbar {
+            background-color: none;
+            color: maroon;
             border-radius: 10px;
-            background-color:rgba(255, 255, 255, 0.81); /* White background for the description */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px;
         }
+
+        .fc .fc-toolbar-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .fc .fc-button {
+            background-color: maroon;
+            color: white;
+            border: none;
+        }
+
+        .fc .fc-button:hover {
+            background-color: darkred;
+        }
+
+        .fc .fc-daygrid-day {
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+
+        .fc .fc-daygrid-day-number {
+            color: maroon;
+        }
+
+        .fc .fc-daygrid-day:hover {
+            background-color: lightgray;
+        }
+
+        .fc .fc-event {
+            background-color: maroon;
+            color: white;
+            border: none;
+        }
+
+        .fc .fc-event:hover {
+            background-color: #e57373;
+        }
+
+        .floating-btn i {
+    margin-right: 10px; /* Adds space between the star icon and the text */
+}
+
+.floating-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #800000;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 1000;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.floating-btn:hover {
+    background-color: #a00000;
+}
+
+.emoji-btn {
+    font-size: 30px;
+    margin: 0 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.emoji-btn:hover {
+    transform: scale(1.2);
+}
+
+/* Floating Button */
+.floating-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #ff9966, #ff5e62);
+    color: white;
+    border-radius: 50px;
+    padding: 10px 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-size: 16px;
+}
+
+.floating-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Modal Content Styling */
+.rate-us-modal {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.rate-us-modal .modal-header {
+    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient Header */
+    color: white;
+    border-bottom: none;
+    padding: 20px;
+}
+
+.rate-us-modal .modal-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+}
+
+.rate-us-modal .modal-body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #555;
+}
+
+.rate-us-modal .emoji-btn {
+    font-size: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.rate-us-modal .emoji-btn:hover {
+    transform: scale(1.3);
+    filter: brightness(1.2);
+}
+
+.rate-us-modal .form-control {
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    transition: box-shadow 0.2s ease;
+}
+
+.rate-us-modal .form-control:focus {
+    box-shadow: 0 0 10px rgba(50, 150, 250, 0.4);
+}
+
+/* Modal Footer Buttons */
+.rate-us-modal .btn {
+    border-radius: 25px;
+    padding: 8px 20px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.rate-us-modal .btn-primary {
+    background-color: #34d399; /* Teal */
+    color: white;
+    border: none;
+}
+
+.rate-us-modal .btn-primary:hover {
+    background-color: #059669;
+    box-shadow: 0 5px 15px rgba(5, 150, 105, 0.4);
+}
+
+
     </style>
 </head>
-
+   
 <body class="bg">
     <div class="container mt-4" style="font-family: 'Poppins', sans-serif;">
-        <!-- Header Section -->
+        <!-- Header -->
         <div class="text-left">
-            <h1 class="upcoming-header">{{ __('Welcome, ' . $user->name . '!') }}</h1>
+            <h1 class="upcoming-header">{{ __('Welcome, ' . Auth::user()->name . '!') }}</h1>
         </div>
-        <div class="cover-photo" style="position: relative; height: 300px; background: url('{{ $user->header_image ? asset('storage/' . $user->header_image) : asset('default-cover.jpg') }}') no-repeat center center / cover;">
-           
-        <!-- Profile Picture -->
-            <div class="profile-picture" style="position: absolute; bottom: -75px; left: 20px;">
-                <img 
-                    src="{{ $user->profile_image ? asset('storage/' . $user->profile_image) : asset('default-profile.png') }}" 
-                    alt="Profile Image" 
-                    class="rounded-circle border border-white shadow" 
-                    style="width: 150px; height: 150px; object-fit: cover;"
-                >
+
+        <div class="container py-3">
+            <!-- Autoplay Slide Image Section -->
+            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{{ asset('images/utm.gif') }}" class="d-block w-100" alt="Animated Slide">
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Organizer Info Section -->
-    <div class="d-flex align-items-center mt-5" style="margin-left: 180px;"> <!-- Adjust margin-top value here -->
-        <!-- Organizer Name and Year Beside Profile Picture -->
-        <div style="margin-top: -50px;">
-            <h1 class="fw-bold" style="font-size: 1.8rem; margin-top: 0.3rem;">{{ $user->name }}</h1>
-            <p class="text-muted" style="margin: 0; font-size: 0.9rem;">
-                {{ $user->year_established ? 'Established in ' . $user->year_established : 'Year established not provided' }}
-            </p>
+        <!-- Overview Section -->
+        <div class="text-left">
+            <h1 class="upcoming-header">Overview</h1>
         </div>
-    </div>
     
-    <!-- Description Section -->
-    <div class="description-card">
-            <p  style="margin: 0; font-size: 1rem;">
-                {{ $user->description ? $user->description : 'No description available.' }}
-            </p>
-        </div>
-    </div>
-    
-    <div class="container py-3">
-        <!-- Event Count Section -->
-        <div class="row event-count-container"> <!-- Added margin-top to ensure spacing -->
-            <div class="col-md-6">
-                <div class="box">
-                    Upcoming Events: <strong>{{ $upcomingCount }}</strong>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="box">
-                    Past Events: <strong>{{ $pastCount }}</strong>
-                </div>
-            </div>
-        </div>
+    <!-- Box Container Section -->
+    <div class="box-container py-4">
+        <!-- Box 1 -->
+        <div class="box">
+           Total number of upcoming programs: {{ $upcomingCount }}
+       </div>
+   
+       <!-- Box 2 -->
+       <div class="box">
+           Total number of past programs: {{ $pastCount }}
+       </div>
+
+   </div>
+
+
         <!-- Calendar Section    -->
         
         <div id="calendar"></div>
         </div>
   
-        <!-- Floating Rate Us Button -->
-        <div id="rate-us-btn" class="floating-btn">
-            <i class="fas fa-star"></i> Rate Us
-        </div>
-        
-        <!-- Rate Us Modal -->
-        <div class="modal fade" id="rateUsModal" tabindex="-1" aria-labelledby="rateUsModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content rate-us-modal">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="rateUsModalLabel">⭐ Rate Us</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body text-center">
-                        <p>We value your feedback! Please rate your experience:</p>
-                        <div class="d-flex justify-content-center gap-3 my-3">
-                            <button type="button" class="btn emoji-btn" data-rate="sad">😢</button>
-                            <button type="button" class="btn emoji-btn" data-rate="ok">🙂</button>
-                            <button type="button" class="btn emoji-btn" data-rate="smile">😊</button>
-                        </div>
-                        <textarea id="rateMessage" class="form-control mt-3" placeholder="Leave your feedback"></textarea>
-                    </div>
-                    <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" id="submitRating" class="btn btn-primary">Submit</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var posts = @json($posts); // Pass posts from the controller to JavaScript
@@ -265,36 +350,66 @@
 
             calendar.render();
         });
-        </script>
-    <script>
-        $(document).ready(function () {
-            // Trigger modal on button click
-            $('#rate-us-btn').click(function () {
-                $('#rateUsModal').modal('show');
-            });
-
-            // Emoji button click feedback
-            $('.emoji-btn').on('click', function () {
-                $('.emoji-btn').removeClass('selected');
-                $(this).addClass('selected');
-            });
-
-            // Submit button logic
-            $('#submitRating').click(function () {
-                const rating = $('.emoji-btn.selected').attr('data-rate');
-                const message = $('#rateMessage').val();
-
-                if (rating) {
-                    alert(`Thank you for your feedback! Rating: ${rating}\nMessage: ${message}`);
-                    $('#rateUsModal').modal('hide');
-                } else {
-                    alert('Please select a rating!');
-                }
-            });
-        });
-        
-    
     </script>
+
+    <!-- Floating Button -->
+<div id="rate-us-btn" class="floating-btn">
+    <i class="fas fa-star"></i> Rate Us
+</div>
+       <!-- Modal -->
+<div class="modal fade" id="rateUsModal" tabindex="-1" aria-labelledby="rateUsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rate-us-modal">
+            <div class="modal-header">
+                <h5 class="modal-title" id="rateUsModalLabel">⭐ Rate Us</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <p>We value your feedback! Please rate your experience:</p>
+                <div class="d-flex justify-content-center gap-3 my-3">
+                    <button type="button" class="btn emoji-btn" data-rate="sad">😢</button>
+                    <button type="button" class="btn emoji-btn" data-rate="ok">🙂</button>
+                    <button type="button" class="btn emoji-btn" data-rate="smile">😊</button>
+                </div>
+                <textarea id="rateMessage" class="form-control mt-3" placeholder="Leave your feedback"></textarea>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" id="submitRating" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script>
+    $(document).ready(function () {
+    // Trigger modal on button click
+    $('#rate-us-btn').click(function () {
+        $('#rateUsModal').modal('show');
+    });
+
+     // Emoji button click feedback
+     $('.emoji-btn').on('click', function () {
+        $('.emoji-btn').removeClass('selected'); // Remove selection from others
+        $(this).addClass('selected'); // Highlight selected emoji
+    });
+
+    // Submit button logic
+    $('#submitRating').click(function () {
+        const rating = $('.emoji-btn.selected').attr('data-rate'); // Get selected rating
+        const message = $('#rateMessage').val(); // Get feedback message
+
+        if (rating) {
+            alert(`Thank you for your feedback! Rating: ${rating}\nMessage: ${message}`);
+            $('#rateUsModal').modal('hide'); // Close the modal
+        } else {
+            alert('Please select a rating!');
+        }
+    });
+});
+
+    </script>
+    
 </body>
 
 </html>
