@@ -65,7 +65,6 @@ class OrganizerProfileController extends Controller
             $user->header_image = 'header_images/' . $imageName; // Save only the file name
         }
     
-        // Update other fields
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->year_established = $request->input('year_established');

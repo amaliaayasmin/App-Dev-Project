@@ -159,58 +159,57 @@
         }
 
         .floating-btn i {
-    margin-right: 10px; /* Adds space between the star icon and the text */
-}
+            margin-right: 10px; 
+        }
 
-.floating-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #800000;
-    color: white;
-    padding: 15px;
-    border-radius: 50%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    z-index: 1000;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        .floating-btn { 
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #800000;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            z-index: 1000;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .floating-btn:hover {
+            background-color: #a00000;
+        }
 
-
-.floating-btn:hover {
-    background-color: #a00000;
-}
-
-.emoji-btn {
-    font-size: 30px;
-    margin: 0 10px;
-    border: none;
-    background: none;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.emoji-btn:hover {
-    transform: scale(1.2);
-}
-
-/* Floating Button */
-.floating-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: linear-gradient(135deg, #ff9966, #ff5e62);
-    color: white;
-    border-radius: 50px;
-    padding: 10px 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    font-size: 16px;
-}
+        .emoji-btn {
+            font-size: 30px;
+            margin: 0 10px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .emoji-btn:hover {
+            transform: scale(1.2);
+        }
+        
+        /* Floating Button */
+        .floating-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff9966, #ff5e62);
+            color: white;
+            border-radius: 50px;
+            padding: 10px 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            font-size: 16px;
+        }
 
 .floating-btn:hover {
     transform: scale(1.1);
@@ -307,108 +306,108 @@
         </div>
 
         <!-- Overview Section -->
+
         <div class="text-left">
             <h1 class="upcoming-header">Overview</h1>
         </div>
 
         <!-- Box Container Section -->
         <div class="box-container py-4">
-     <!-- Box 1 -->
-     <div class="box">
-        Total number of saved programs: {{ $savedCount }}
-    </div>
 
-    <!-- Box 2 -->
-    <div class="box">
-        Total number of applied programs: {{ $joinedCount }}
+        <!-- Box 1 --> 
+        <div class="box">
+            Total number of saved programs: {{ $savedCount }}
+        </div>
+    
+        <!-- Box 2 -->
+        <div class="box">
+            Total number of applied programs: {{ $joinedCount }}
+        </div>
+    
+        <!-- Box 3 -->
+        <div class="box">
+            Total number of accepted programs: {{ $acceptedCount }}
+        </div>
     </div>
-
-    <!-- Box 3 -->
-    <div class="box">
-        Total number of accepted programs: {{ $acceptedCount }}
-    </div>
-</div>
 
         <!-- Calendar Section -->
         <div id="calendar"></div>
-    </div>
 
-    <script>
-        var acceptedPrograms = @json($acceptedPrograms);  
-    
-        var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
-            initialView: 'dayGridMonth',
-            events: acceptedPrograms.map(function(program) {
-                return {
-                    title: program.title,
-                    start: program.start_date,
-                    end: program.end_date,
-                    description: 'This is an accepted program.',
-                };
-            }),
-            
-        });
-    
-        calendar.render();
-    </script>
+        <script>
+            var acceptedPrograms = @json($acceptedPrograms);  
+        
+            var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
+                initialView: 'dayGridMonth',
+                events: acceptedPrograms.map(function(program) {
+                    return {
+                        title: program.title,
+                        start: program.start_date,
+                        end: program.end_date,
+                        description: 'This is an accepted program.',
+                    };
+                }),
+                
+            });
+            calendar.render();
+        </script>
 
-    
-        <!-- Floating Button -->
-<div id="rate-us-btn" class="floating-btn">
-    <i class="fas fa-star"></i> Rate Us
-</div>
-       <!-- Modal -->
-<div class="modal fade" id="rateUsModal" tabindex="-1" aria-labelledby="rateUsModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content rate-us-modal">
-            <div class="modal-header">
-                <h5 class="modal-title" id="rateUsModalLabel">⭐ Rate Us</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-center">
-                <p>We value your feedback! Please rate your experience:</p>
-                <div class="d-flex justify-content-center gap-3 my-3">
-                    <button type="button" class="btn emoji-btn" data-rate="sad">😢</button>
-                    <button type="button" class="btn emoji-btn" data-rate="ok">🙂</button>
-                    <button type="button" class="btn emoji-btn" data-rate="smile">😊</button>
+        <!-- Rate Us Button -->
+        <div id="rate-us-btn" class="floating-btn">
+            <i class="fas fa-star"></i> Rate Us
+        </div>
+
+       <!-- Rate Us -->
+       <div class="modal fade" id="rateUsModal" tabindex="-1" aria-labelledby="rateUsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rate-us-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="rateUsModalLabel">⭐ Rate Us</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <textarea id="rateMessage" class="form-control mt-3" placeholder="Leave your feedback"></textarea>
-            </div>
-            <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" id="submitRating" class="btn btn-primary">Submit</button>
+                <div class="modal-body text-center">
+                    <p>We value your feedback! Please rate your experience:</p>
+                    <div class="d-flex justify-content-center gap-3 my-3">
+                        <button type="button" class="btn emoji-btn" data-rate="sad">😢</button>
+                        <button type="button" class="btn emoji-btn" data-rate="ok">🙂</button>
+                        <button type="button" class="btn emoji-btn" data-rate="smile">😊</button>
+                    </div>
+                    <textarea id="rateMessage" class="form-control mt-3" placeholder="Leave your feedback"></textarea>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="submitRating" class="btn btn-primary">Submit</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
     <script>
-    $(document).ready(function () {
-    // Trigger modal on button click
-    $('#rate-us-btn').click(function () {
-        $('#rateUsModal').modal('show');
+        $(document).ready(function () {
+        // Trigger modal on button click
+        $('#rate-us-btn').click(function () {
+            $('#rateUsModal').modal('show');
+        });
+    
+         // Emoji button click feedback
+         $('.emoji-btn').on('click', function () {
+            $('.emoji-btn').removeClass('selected'); // Remove selection from others
+            $(this).addClass('selected'); // Highlight selected emoji
+        });
+    
+        // Submit button logic
+        $('#submitRating').click(function () {
+            const rating = $('.emoji-btn.selected').attr('data-rate'); // Get selected rating
+            const message = $('#rateMessage').val(); // Get feedback message
+    
+            if (rating) {
+                alert(`Thank you for your feedback! Rating: ${rating}\nMessage: ${message}`);
+                $('#rateUsModal').modal('hide'); // Close the modal
+            } else {
+                alert('Please select a rating!');
+            }
+        });
     });
-
-     // Emoji button click feedback
-     $('.emoji-btn').on('click', function () {
-        $('.emoji-btn').removeClass('selected'); // Remove selection from others
-        $(this).addClass('selected'); // Highlight selected emoji
-    });
-
-    // Submit button logic
-    $('#submitRating').click(function () {
-        const rating = $('.emoji-btn.selected').attr('data-rate'); // Get selected rating
-        const message = $('#rateMessage').val(); // Get feedback message
-
-        if (rating) {
-            alert(`Thank you for your feedback! Rating: ${rating}\nMessage: ${message}`);
-            $('#rateUsModal').modal('hide'); // Close the modal
-        } else {
-            alert('Please select a rating!');
-        }
-    });
-});
-
+    
     </script>
 
 </body>

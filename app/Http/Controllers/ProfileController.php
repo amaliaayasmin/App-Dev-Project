@@ -67,8 +67,8 @@ class ProfileController extends Controller
             $user->header_image = 'header_images/' . $imageName; // Save only the file name
         }
 
-        // Update other fields
-        // $user->fill($request->validated());
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
         $user->university = $request->input('university');
         $user->faculty = $request->input('faculty');
         $user->languages = $request->input('languages');
