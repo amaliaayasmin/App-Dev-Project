@@ -43,8 +43,92 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        
+        /* Floating Button */
+        .floating-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff9966, #ff5e62);
+            color: white;
+            border-radius: 50px;
+            padding: 10px 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            font-size: 16px;
+        }
 
+        .floating-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Modal Content Styling */
+        .rate-us-modal {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .rate-us-modal .modal-header {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            border-bottom: none;
+            padding: 20px;
+        }
+
+        .rate-us-modal .modal-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+        }
+
+        .rate-us-modal .modal-body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .rate-us-modal .emoji-btn {
+            font-size: 30px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+
+        .rate-us-modal .emoji-btn:hover {
+            transform: scale(1.3);
+            filter: brightness(1.2);
+        }
+
+        .rate-us-modal .form-control {
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .rate-us-modal .form-control:focus {
+            box-shadow: 0 0 10px rgba(50, 150, 250, 0.4);
+        }
+
+        .rate-us-modal .btn {
+            border-radius: 25px;
+            padding: 8px 20px;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .rate-us-modal .btn-primary {
+            background-color: #34d399;
+            color: white;
+            border: none;
+        }
+
+        .rate-us-modal .btn-primary:hover {
+            background-color: #059669;
+            box-shadow: 0 5px 15px rgba(5, 150, 105, 0.4);
+        }
+  
         /* Calendar Section */
         #calendar {
             margin-top: 30px;
@@ -82,7 +166,8 @@
             <h1 class="upcoming-header">{{ __('Welcome, ' . $user->name . '!') }}</h1>
         </div>
         <div class="cover-photo" style="position: relative; height: 300px; background: url('{{ $user->header_image ? asset('storage/' . $user->header_image) : asset('default-cover.jpg') }}') no-repeat center center / cover;">
-            <!-- Profile Picture -->
+           
+        <!-- Profile Picture -->
             <div class="profile-picture" style="position: absolute; bottom: -75px; left: 20px;">
                 <img 
                     src="{{ $user->profile_image ? asset('storage/' . $user->profile_image) : asset('default-profile.png') }}" 
@@ -131,6 +216,37 @@
         <div id="calendar"></div>
         </div>
   
+        <!-- Floating Rate Us Button -->
+        <div id="rate-us-btn" class="floating-btn">
+            <i class="fas fa-star"></i> Rate Us
+        </div>
+        
+        <!-- Rate Us Modal -->
+        <div class="modal fade" id="rateUsModal" tabindex="-1" aria-labelledby="rateUsModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content rate-us-modal">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="rateUsModalLabel">⭐ Rate Us</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <p>We value your feedback! Please rate your experience:</p>
+                        <div class="d-flex justify-content-center gap-3 my-3">
+                            <button type="button" class="btn emoji-btn" data-rate="sad">😢</button>
+                            <button type="button" class="btn emoji-btn" data-rate="ok">🙂</button>
+                            <button type="button" class="btn emoji-btn" data-rate="smile">😊</button>
+                        </div>
+                        <textarea id="rateMessage" class="form-control mt-3" placeholder="Leave your feedback"></textarea>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" id="submitRating" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var posts = @json($posts); // Pass posts from the controller to JavaScript
@@ -149,6 +265,35 @@
 
             calendar.render();
         });
+        </script>
+    <script>
+        $(document).ready(function () {
+            // Trigger modal on button click
+            $('#rate-us-btn').click(function () {
+                $('#rateUsModal').modal('show');
+            });
+
+            // Emoji button click feedback
+            $('.emoji-btn').on('click', function () {
+                $('.emoji-btn').removeClass('selected');
+                $(this).addClass('selected');
+            });
+
+            // Submit button logic
+            $('#submitRating').click(function () {
+                const rating = $('.emoji-btn.selected').attr('data-rate');
+                const message = $('#rateMessage').val();
+
+                if (rating) {
+                    alert(`Thank you for your feedback! Rating: ${rating}\nMessage: ${message}`);
+                    $('#rateUsModal').modal('hide');
+                } else {
+                    alert('Please select a rating!');
+                }
+            });
+        });
+        
+    
     </script>
 </body>
 
