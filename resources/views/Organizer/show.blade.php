@@ -3,14 +3,14 @@
 @section('content')
 <div class="container mt-4" style="font-family: 'Poppins', sans-serif;">
     <!-- Header Section -->
-    <div class="cover-photo" style="position: relative; height: 300px; background: url('{{ $organizer->header_image ? asset('storage/' . $organizer->header_image) : asset('default-cover.jpg') }}') no-repeat center center / cover;">
+    <div class="cover-photo" style="position: relative; height: 300px; background: url('{{ $organizer->header_image ? asset('storage/' . $organizer->header_image) : asset('img/default-header.jpg') }}') no-repeat center center / cover; ">
         <!-- Profile Picture -->
         <div class="profile-picture" style="position: absolute; bottom: -75px; left: 20px;">
             <img 
-                src="{{ $organizer->profile_image ? asset('storage/' . $organizer->profile_image) : asset('default-profile.png') }}" 
+                src="{{ $organizer->profile_image ? asset('storage/' . $organizer->profile_image) : asset('img/default-profile1.jpg') }}" 
                 alt="Profile Image" 
                 class="rounded-circle border border-white shadow" 
-                style="width: 150px; height: 150px; object-fit: cover;"
+                style="width: 150px; height: 150px; object-fit: cover; background-color: #f8f9fa; display: flex; align-items: center; justify-content: center;"
             >
         </div>
     </div>
