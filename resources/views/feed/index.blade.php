@@ -214,7 +214,7 @@
                         <p class="mb-1 fw400 fz90">Start Time: {{ $post->start_time }}</p>
                         <p class="mb-1 fw400 fz90">End Time: {{ $post->end_time }}</p>
                         <p class="mb-1 fw400 fz90">Benefits: {{ $post->benefits }}</p>
-                        <p class="mb-1 fw400 fz90">Descriptions: {{ $post->description }}</p>
+                        
 
                         <button class="btn btn-success float-end mt-2" onclick="applyToProgram({{ $post->id }}, this)">
                             <i class="fa fa-plus" aria-hidden="true"></i>Quick Apply
